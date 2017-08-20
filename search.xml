@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[laravel]]></title>
-    <url>%2F2017%2F08%2F18%2Flaravel%2F</url>
-    <content type="text"><![CDATA[hexo常用命令笔记hexo123npm install hexo -g #安装npm update hexo -g #升级hexo init #初始化 简写12345hexo n &quot;我的博客&quot; == hexo new &quot;我的博客&quot; #新建文章hexo p == hexo publishhexo g == hexo generate#生成hexo s == hexo server #启动服务预览hexo d == hexo deploy#部署]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[How do you make blog for yourself ?]]></title>
     <url>%2F2017%2F08%2F18%2Fhelloworld%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartInstall hexo123npm install hexo-cli g #安装npm update hexo -g #升级hexo init blog #初始化博客文件夹 Install theme Next1git clone https://github.com/iissnan/hexo-theme-next themes/next Install Plugins1234567891011121314# 切换到该路径cd blog#安装hexo的扩展插件npm install#安装其它插件npm install hexo-server --savenpm install hexo-admin --savenpm install hexo-generator-archive --savenpm install hexo-generator-feed --savenpm install hexo-generator-search --savenpm install hexo-generator-tag --savenpm install hexo-deployer-git --savenpm install hexo-generator-sitemap --savenpm install hexo-generator-baidu-sitemap --save Create a new post1234hexo new "postName" #新建文章hexo new page "pageName" #新建页面hexo new photo "My Gallery"hexo new "Hello World" --lang tw More info: Writing Run server1hexo server More info: Server Abbreviate hexo commands1234567hexo g：hexo generatehexo c：hexo cleanhexo s：hexo serverhexo d：hexo deployhexo clean &amp;&amp; hexo g -s #清除、生成、启动hexo clean &amp;&amp; hexo g -d #清除、生成、部署 Generate static files1hexo generate More info: Generating Deploy to remote sites1hexo deploy More info: [Deployment](https://hexo.io/docs/deployment.html Reference linksHexoHexo NextNext SourceInstall Hexo adminOptimize the hexo-theme-next]]></content>
