@@ -4,15 +4,30 @@
 
     
   <url>
-    <loc>https://opensmarty.github.io/2017/08/18/%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</loc>
-    <lastmod>2017-08-18T09:13:06.669Z</lastmod>
+    <loc>https://opensmarty.github.io/2017/08/18/hello-world/</loc>
+    <lastmod>2017-08-20T12:02:06.211Z</lastmod>
     <data>
         <display>
-        <title>如何搭建个人博客</title>
+        <title>How do you make blog for yourself ?</title>
         <pubTime>2017-08-18T08:12:00.000Z</pubTime>
         
+        <tag>Hexo</tag>
+         
+        <tag>Next</tag>
+         
+        <tag>HelloWorld</tag>
+         
          
            
+             
+              <breadCrumb title="Python" url="https://opensmarty.github.io/categories/Python/"/>
+          
+             
+              <breadCrumb title="javascript" url="https://opensmarty.github.io/categories/Python/javascript/"/>
+          
+             
+              <breadCrumb title="Install" url="https://opensmarty.github.io/categories/Python/javascript/Install/"/>
+          
         </display>
     </data>
     </url>
@@ -35,21 +50,6 @@
     
     
     
-    
-  <url>
-    <loc>https://opensmarty.github.io/2017/08/17/hello-world/</loc>
-    <lastmod>2017-08-17T12:09:19.194Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2017-08-17T12:09:19.194Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
     
     
     

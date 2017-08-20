@@ -1,18 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[laravel]]></title>
-    <url>%2F2017%2F08%2F18%2Flaravel%2F</url>
-    <content type="text"><![CDATA[hexo常用命令笔记hexo123npm install hexo -g #安装npm update hexo -g #升级hexo init #初始化 简写12345hexo n &quot;我的博客&quot; == hexo new &quot;我的博客&quot; #新建文章hexo p == hexo publishhexo g == hexo generate#生成hexo s == hexo server #启动服务预览hexo d == hexo deploy#部署]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[如何搭建个人博客]]></title>
-    <url>%2F2017%2F08%2F18%2F%E5%A6%82%E4%BD%95%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2017%2F08%2F17%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
-  </entry>
+<search> 
+  
+    
+    <entry>
+      <title><![CDATA[laravel]]></title>
+      <url>/2017/08/18/laravel/</url>
+      <content type="html"><![CDATA[<h1 id="hexo常用命令笔记"><a href="#hexo常用命令笔记" class="headerlink" title="hexo常用命令笔记"></a>hexo常用命令笔记</h1><h2 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install hexo -g #安装</div><div class="line">npm update hexo -g #升级</div><div class="line">hexo init #初始化</div></pre></td></tr></table></figure>
+<h2 id="简写"><a href="#简写" class="headerlink" title="简写"></a>简写</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">hexo n &quot;我的博客&quot; == hexo new &quot;我的博客&quot; #新建文章</div><div class="line">hexo p == hexo publish</div><div class="line">hexo g == hexo generate#生成</div><div class="line">hexo s == hexo server #启动服务预览</div><div class="line">hexo d == hexo deploy#部署</div></pre></td></tr></table></figure>]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[How do you make blog for yourself ?]]></title>
+      <url>/2017/08/18/hello-world/</url>
+      <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><p>###Install hexo</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ npm install hexo-cli g <span class="comment">#安装</span></div><div class="line">$ npm update hexo -g <span class="comment">#升级</span></div><div class="line">hexo init blog <span class="comment">#初始化博客文件夹</span></div></pre></td></tr></table></figure>
+<p>###Install theme Next</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git <span class="built_in">clone</span> https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
+<p>###Install Plugins</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 切换到该路径</span></div><div class="line">$ <span class="built_in">cd</span> blog</div><div class="line"><span class="comment">#安装hexo的扩展插件</span></div><div class="line">$ npm install</div><div class="line"><span class="comment">#安装其它插件</span></div><div class="line">$ npm install hexo-server --save</div><div class="line">$ npm install hexo-admin --save</div><div class="line">$ npm install hexo-generator-archive --save</div><div class="line">$ npm install hexo-generator-feed --save</div><div class="line">$ npm install hexo-generator-search --save</div><div class="line">$ npm install hexo-generator-tag --save</div><div class="line">$ npm install hexo-deployer-git --save</div><div class="line">$ npm install hexo-generator-sitemap --save</div><div class="line">$ npm install hexo-generator-baidu-sitemap --save</div></pre></td></tr></table></figure>
+<h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"postName"</span> <span class="comment">#新建文章</span></div><div class="line">$ hexo new page <span class="string">"pageName"</span> <span class="comment">#新建页面</span></div><div class="line">$ hexo new photo <span class="string">"My Gallery"</span></div><div class="line">$ hexo new <span class="string">"Hello World"</span> --lang tw</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Abbreviate-hexo-commands"><a href="#Abbreviate-hexo-commands" class="headerlink" title="Abbreviate hexo commands"></a>Abbreviate hexo commands</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ hexo g：hexo generate</div><div class="line">$ hexo c：hexo clean</div><div class="line">$ hexo s：hexo server</div><div class="line">$ hexo d：hexo deploy</div><div class="line"></div><div class="line">$ hexo clean &amp;&amp; hexo g -s <span class="comment">#清除、生成、启动</span></div><div class="line">$ hexo clean &amp;&amp; hexo g -d <span class="comment">#清除、生成、部署</span></div></pre></td></tr></table></figure>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python </category>
+            
+            <category> javascript </category>
+            
+            <category> Install </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+            <tag> Next </tag>
+            
+            <tag> HelloWorld </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
 </search>
