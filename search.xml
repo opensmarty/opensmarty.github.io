@@ -260,40 +260,150 @@
 <tr>
 <td style="text-align:center">200032</td>
 <td style="text-align:left">Update success, while server slow now, please wait 1-2 minutes</td>
-<td style="text-align:left">发布成功，目前服务器可能会有延迟，请耐心等待1-2分钟</td>
+<td style="text-align:left">发布成功，目前服务器可能会有延迟，请耐心等待1-2分钟　</td>
 </tr>
 </tbody>
 </table>
 <hr>
-<p>| 201001   |Target weibo does not exist |不存在的微博|<br>| 201002  | Not your own weibo | 不是你发布的微博|<br>| 201003  | Can’t repost yourself weibo| 不能转发自己的微博|<br>| 201004  | Illegal weibo |  不合法的微博|<br>| 201009  | Weibo id is null   | 微博ID为空|<br>| 201011  | Repeated weibo text |不能发布相同的微博|</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">错误代码</th>
+<th style="text-align:left">错误信息</th>
+<th style="text-align:left">详细描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">201001</td>
+<td style="text-align:left">　Target weibo does not exist</td>
+<td style="text-align:left">　不存在的微博　</td>
+</tr>
+<tr>
+<td style="text-align:center">201002</td>
+<td style="text-align:left">Not your own weibo</td>
+<td style="text-align:left">不是你发布的微博　</td>
+</tr>
+<tr>
+<td style="text-align:center">201003</td>
+<td style="text-align:left">Can’t repost yourself weibo　</td>
+<td style="text-align:left">不能转发自己的微博　</td>
+</tr>
+<tr>
+<td style="text-align:center">201004</td>
+<td style="text-align:left">Illegal weibo</td>
+<td style="text-align:left">不合法的微博　</td>
+</tr>
+<tr>
+<td style="text-align:center">201009</td>
+<td style="text-align:left">Weibo id is null</td>
+<td style="text-align:left">微博ID为空　</td>
+</tr>
+<tr>
+<td style="text-align:center">201011</td>
+<td style="text-align:left">Repeated weibo text</td>
+<td style="text-align:left">不能发布相同的微博　</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<p>| 202001  | Target weibo comment does not exist |不存在的微博评论|<br>| 202001   |Illegal comment |不合法的评论|<br>| 202002   |Not your own comment  |  不是你发布的评论|<br>| 202004   |Comment id is null  |评论ID为空|</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">错误代码</th>
+<th style="text-align:left">错误信息</th>
+<th style="text-align:left">详细描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">202001</td>
+<td style="text-align:left">Target weibo comment does not exist</td>
+<td style="text-align:left">　不存在的微博评论　</td>
+</tr>
+<tr>
+<td style="text-align:center">202001</td>
+<td style="text-align:left">　Illegal comment</td>
+<td style="text-align:left">不合法的评论</td>
+</tr>
+<tr>
+<td style="text-align:center">202002</td>
+<td style="text-align:left">　Not your own comment</td>
+<td style="text-align:left">不是你发布的评论　</td>
+</tr>
+<tr>
+<td style="text-align:center">202004</td>
+<td style="text-align:left">　Comment id is null</td>
+<td style="text-align:left">　评论ID为空　</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<p>| 203001   |Can’t send direct message to user who is not your follower | 不能给不是你粉丝的人发私信|<br>| 203002  | Illegal direct message | 不合法的私信|<br>| 203003  | Not your own direct message |不是属于你的私信|<br>| 203005   |Direct message does not exist  | 不存在的私信|<br>| 203006   Repeated direct message text    不能发布相同的私信<br>| 203007   Illegal direct message id   非法的私信ID</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">错误代码</th>
+<th style="text-align:left">错误信息</th>
+<th style="text-align:left">详细描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">203001</td>
+<td style="text-align:left">　Can’t send direct message to user who is not your follower</td>
+<td style="text-align:left">不能给不是你粉丝的人发私信　</td>
+</tr>
+<tr>
+<td style="text-align:center">203002</td>
+<td style="text-align:left">Illegal direct message</td>
+<td style="text-align:left">不合法的私信　</td>
+</tr>
+<tr>
+<td style="text-align:center">203003</td>
+<td style="text-align:left">Not your own direct message</td>
+<td style="text-align:left">　不是属于你的私信　</td>
+</tr>
+<tr>
+<td style="text-align:center">203005</td>
+<td style="text-align:left">　Direct message does not exist</td>
+<td style="text-align:left">不存在的私信</td>
+</tr>
+<tr>
+<td style="text-align:center">203006</td>
+<td style="text-align:left">Repeated direct message text</td>
+<td style="text-align:left">不能发布相同的私信</td>
+</tr>
+<tr>
+<td style="text-align:center">203007</td>
+<td style="text-align:left">Illegal direct message id</td>
+<td style="text-align:left">非法的私信ID</td>
+</tr>
+</tbody>
+</table>
 <hr>
-<p>| 204001   Domain not exist    域名不存在<br>| 204002   Wrong verifier  Verifier错误</p>
+<p>| 204001  |  Domain not exist  |  域名不存在 |<br>| 204002  | Wrong verifier | Verifier错误 |</p>
 <hr>
-<p>| 205001   Source_user or target_user does not exists  参数source_user或者target_user的用户不存在<br>| 205002   Please input right target user id or screen_name    必须输入目标用户id或者screen_name<br>| 205003   Need you follow user_id 参数user_id必须是你关注的用户<br>| 205004   Can not follow yourself 你不能关注自己<br>| 205005   Social graph updates out of rate limit  加关注请求超过上限<br>| 205006   Already followed    已经关注此用户<br>| 205007   Verification code is needed 需要输入验证码<br>| 205008   According to user privacy settings,you can not do this  根据对方的设置，你不能进行此操作<br>| 205009   Private friend count is out of limit    悄悄关注个数到达上限<br>| 205009   Not private friend  不是悄悄关注人<br>| 205011   Already followed privately  已经悄悄关注此用户<br>| 205012   Please delete the user from you blacklist before you follow the user    你已经把此用户加入黑名单，加关注前请先解除<br>| 205013   Friend count is out of limit!   你的关注人数已达上限<br>| 205021   Hi Superman, you have concerned a lot of people, have a think of how to make other people concern about you! ! If you have any questions, please contact Sina customer service: 400 690 0000    hi 超人，你今天已经关注很多喽，接下来的时间想想如何让大家都来关注你吧！如有问题，请联系新浪客服：400 690 0000<br>| 205022   Not followed    还未关注此用户<br>| 205023   Not followers   还不是粉丝<br>| 205024   Hi Superman, you have cancelled concerning a lot of people, have a think of how to make other people concern about you! ! If you have any questions, please contact Sina customer service: 400 690 0000 hi 超人，你今天已经取消关注很多喽，接下来的时间想想如何让大家都来关注你吧！如有问题，请联系新浪客服：400 690 0000</p>
+<p>| 205001  | Source_user or target_user does not exists | 参数source_user或者target_user的用户不存在 |<br>| 205002  |  Please input right target user id or screen_name  |  必须输入目标用户id或者screen_name |<br>| 205003  |  Need you follow user_id | 参数user_id必须是你关注的用户 |<br>| 205004  |  Can not follow yourself  | 你不能关注自己 |<br>| 205005  |  Social graph updates out of rate limit  | 加关注请求超过上限 |<br>| 205006  | Already followed  |  已经关注此用户 |<br>| 205007  |  Verification code is needed  | 需要输入验证码 |<br>| 205008  | According to user privacy settings,you can not do this   | 根据对方的设置，你不能进行此操作  |<br>| 205009  |  Private friend count is out of limit   |  悄悄关注个数到达上限 |<br>| 205009  |  Not private friend   | 不是悄悄关注人 |<br>| 205011  |  Already followed privately  | 已经悄悄关注此用户 |<br>| 205012  | Please delete the user from you blacklist before you follow the user   |  你已经把此用户加入黑名单，加关注前请先解除 |<br>| 205013  |  Friend count is out of limit!  |  你的关注人数已达上限 |<br>| 205021   | Hi Superman, you have concerned a lot of people, have a think of how to make other people concern about you! ! If you have any questions, please contact Sina customer service: 400 690 0000   |  hi 超人，你今天已经关注很多喽，接下来的时间想想如何让大家都来关注你吧！如有问题，请联系xx客服：400 690 0000 |<br>| 205022  |  Not followed  |   还未关注此用户 |<br>| 205023  |  Not followers  |  还不是粉丝 |<br>| 205024  |  Hi Superman, you have cancelled concerning a lot of people, have a think of how to make other people concern about you! ! If you have any questions, please contact Sina customer service: 400 690 0000 | hi 超人，你今天已经取消关注很多喽，接下来的时间想想如何让大家都来关注你吧！如有问题，请联系xx客服：400 690 0000 |</p>
 <hr>
-<p>| :——:| :—— | :—— |<br>| 206001 |  List name too long, please input text less than 10 characters   |列表名太长，请确保输入的文本不超过10个字符 |<br>| 206002 |  List description too long, please input text less than 70 characters  |  列表描叙太长，请确保输入的文本不超过70个字符|<br>| 206003  | List does not exists   | 列表不存在|<br>| 206004  | Only the owner has the authority   | 不是列表的所属者|<br>| 206005  | Illegal list name or list description |  列表名或描叙不合法|<br>| 206006  | Object already exists |  记录已存在|<br>| 206007 |  DB error, please contact the administator |  数据库错误，请联系系统管理员|<br>| 206008  | List name duplicate | 列表名冲突|<br>| 206010  | Does not support private list  | 目前不支持私有分组|<br>| 206011  | Create list error  | 创建列表失败|<br>| 206012  | Only support private list |  目前只支持私有分组|<br>| 206013  | You hava subscriber too many lists | 订阅列表达到上限|<br>| 206014  | Too many lists, see doc for more info |  创建列表达到上限，请参考API文档|<br>| 206015  | Too many members, see doc for more info |列表成员上限，请参考API文档|</p>
+<p>| :——:| :—— | :—— |<br>| 206001 |  List name too long, please input text less than 10 characters   | 列表名太长，请确保输入的文本不超过10个字符 |<br>| 206002 |  List description too long, please input text less than 70 characters  |  列表描叙太长，请确保输入的文本不超过70个字符 |<br>| 206003  | List does not exists   | 列表不存在 |<br>| 206004  | Only the owner has the authority   | 不是列表的所属者 |<br>| 206005  | Illegal list name or list description |  列表名或描叙不合法 |<br>| 206006  | Object already exists |  记录已存在|<br>| 206007 |  DB error, please contact the administator |  数据库错误，请联系系统管理员 |<br>| 206008  | List name duplicate | 列表名冲突|<br>| 206010  | Does not support private list  | 目前不支持私有分组 |<br>| 206011  | Create list error  | 创建列表失败 |<br>| 206012  | Only support private list |  目前只支持私有分组 |<br>| 206013  | You hava subscriber too many lists | 订阅列表达到上限 |<br>| 206014  | Too many lists, see doc for more info |  创建列表达到上限，请参考API文档 |<br>| 206015  | Too many members, see doc for more info | 列表成员上限，请参考API文档 |</p>
 <hr>
-<p>| :——:| :—— | :—— |<br>| 207001  | Repeated tag text  | 不能提交相同的收藏标签|<br>| 207002  | Tags is too many  |  最多两个收藏标签|<br>| 207003  | Illegal tag name   | 收藏标签名不合法|</p>
+<p>| :——:| :—— | :—— |<br>| 207001  | Repeated tag text  | 不能提交相同的收藏标签 |<br>| 207002  | Tags is too many  |  最多两个收藏标签 |<br>| 207003  | Illegal tag name   | 收藏标签名不合法 |</p>
 <hr>
-<p>| :——:| :—— | :—— |<br>| 208001 |  Trend_name is null | 参数trend_name是空值|<br>| 208002 |  Trend_id is null   | 参数trend_id是空值|</p>
+<p>| :——:| :—— | :—— |<br>| 208001 |  Trend_name is null | 参数trend_name是空值 |<br>| 208002 |  Trend_id is null   | 参数trend_id是空值 |</p>
 <hr>
-<p>| :——:| :—— | :—— |<br>| 209001 |  Error: in blacklist | 错误:已经添加了黑名单|<br>| 209002  | Error: Blacklist limit has been reached. |   错误:已达到黑名单上限|<br>| 209003  | Error: System administrators can not be added to the blacklist.| 错误:不能添加系统管理员为黑名单|<br>| 209004  | Error: Can not add yourself to the blacklist. |  错误:不能添加自己为黑名单|<br>| 209005  | Error: not in blacklist | 错误:不在黑名单中|</p>
+<p>| :——:| :—— | :—— |<br>| 209001 |  Error: in blacklist | 错误:已经添加了黑名单 |<br>| 209002  | Error: Blacklist limit has been reached. |   错误:已达到黑名单上限 |<br>| 209003  | Error: System administrators can not be added to the blacklist. | 错误:不能添加系统管理员为黑名单 |<br>| 209004  | Error: Can not add yourself to the blacklist. |  错误:不能添加自己为黑名单 |<br>| 209005  | Error: not in blacklist | 错误:不在黑名单中 |</p>
 <hr>
-<p>| :——:| :—— | :—— |<br>| 210001  | Tags parameter is null | 标签参数为空|<br>| 210002  | Tags name too long | 标签名太长，请确保每个标签名不超过14个字符|</p>
+<p>| :——:| :—— | :—— |<br>| 210001  | Tags parameter is null | 标签参数为空 |<br>| 210002  | Tags name too long | 标签名太长，请确保每个标签名不超过14个字符 |</p>
 <hr>
-<p>| :——:| :—— | :—— |<br>| 211001 |  Domain parameter is error  | 参数domain错误|<br>| 211002 |  The phone number has been used | 该手机号已经被使用|<br>| 211003  | The account has bean bind phone | 该用户已经绑定手机|<br>| 211004  | Wrong verifier | Verifier错误|</p>
+<p>| :——:| :—— | :—— |<br>| 211001 |  Domain parameter is error  | 参数domain错误 |<br>| 211002 |  The phone number has been used | 该手机号已经被使用 |<br>| 211003  | The account has bean bind phone | 该用户已经绑定手机 |<br>| 211004  | Wrong verifier | Verifier错误 |</p>
 <hr>
-<p>| :——:| :—— | :—— |<br>| 213001 |  Auth faild | 认证失败<br>| 213002  | Username or password error | 用户名或密码不正确|<br>| 213003  | Username and pwd auth out of rate limit | 用户名密码认证超过请求限制|<br>| 213004 |  Version rejected   | 版本号错误|<br>| 213005 |  Parameter absent   | 缺少必要的参数|<br>| 213006 |  Parameter rejected  | OAuth参数被拒绝|<br>| 213007 |  Timestamp refused  | 时间戳不正确|<br>| 213008 |  Nonce used  | 参数nonce已经被使用|<br>| 213009 |  Signature method rejected  | 签名算法不支持|<br>| 213010 |  Signature invalid |  签名值不合法<br>| 213011 |  Consumer key unknown  |  参数consumer_key不存在|<br>| 213012 |  Consumer key refused  |  参数consumer_key不合法|<br>| 213013 |  Miss consumer key  | 参数consumer_key缺失|<br>| 213014 |  Token used  | Token已经被使用|<br>| 213015 |  Token expired  | Token已经过期|<br>| 213016 |  Token revoked  | Token不合法|<br>| 213017 |  Token rejected | Token不合法|<br>| 213018 |  Verifier fail  | Pin码认证失败|<br>| 213019 |  Accessor was revoked   | 授权关系已经被解除|<br>| 213020 |  OAuth2 must use https  | 使用OAuth2必须使用https|<br>| 213021 |  Applications over the unaudited use restrictions  |  未审核的应用使用人数超过限制|<br>| 213027 |  Expired token  | token过期|<br>| 213035 |  Request uid’s value must be the current user |   uid参数仅允许传入当前授权用户uid|</p>
+<p>| :——:| :—— | :—— |<br>| 213001 |  Auth faild | 认证失败<br>| 213002  | Username or password error | 用户名或密码不正确 |<br>| 213003  | Username and pwd auth out of rate limit | 用户名密码认证超过请求限制 |<br>| 213004 |  Version rejected   | 版本号错误 |<br>| 213005 |  Parameter absent   | 缺少必要的参数 |<br>| 213006 |  Parameter rejected  | OAuth参数被拒绝 |<br>| 213007 |  Timestamp refused  | 时间戳不正确 |<br>| 213008 |  Nonce used  | 参数nonce已经被使用 |<br>| 213009 |  Signature method rejected  | 签名算法不支持 |<br>| 213010 |  Signature invalid |  签名值不合法 |<br>| 213011 |  Consumer key unknown  |  参数consumer_key不存在 |<br>| 213012 |  Consumer key refused  |  参数consumer_key不合法 |<br>| 213013 |  Miss consumer key  | 参数consumer_key缺失 |<br>| 213014 |  Token used  | Token已经被使用 |<br>| 213015 |  Token expired  | Token已经过期|<br>| 213016 |  Token revoked  | Token不合法 |<br>| 213017 |  Token rejected | Token不合法 |<br>| 213018 |  Verifier fail  | Pin码认证失败 |<br>| 213019 |  Accessor was revoked   | 授权关系已经被解除 |<br>| 213020 |  OAuth2 must use https  | 使用OAuth2必须使用https |<br>| 213021 |  Applications over the unaudited use restrictions  |  未审核的应用使用人数超过限制 |<br>| 213027 |  Expired token  | token过期 |<br>| 213035 |  Request uid’s value must be the current user |   uid参数仅允许传入当前授权用户uid |</p>
 <hr>
-<p>| :——:| :—— | :—— |<br>| 215001  | Urls is null  |  参数urls是空的|<br>| 215002 |  Urls is too many |   参数urls太多了|<br>| 215003 |  IP is null  | IP是空值|<br>| 215004 |  Url is null | 参数url是空值|</p>
+<p>| :——:| :—— | :—— |<br>| 215001  | Urls is null  |  参数urls是空的 |<br>| 215002 |  Urls is too many |   参数urls太多了 |<br>| 215003 |  IP is null  | IP是空值 |<br>| 215004 |  Url is null | 参数url是空值 |</p>
 <hr>
-<p>| :——:| :—— | :—— |<br>| 216001 |  Manage notice error, need auth | 需要系统管理员的权限|<br>| 216002 |  Contains forbid world  | 含有敏感词|<br>| 216003 |  Applications send notice over the restrictions | 通知发送达到限制|</p>
+<p>| :——:| :—— | :—— |<br>| 216001 |  Manage notice error, need auth | 需要系统管理员的权限 |<br>| 216002 |  Contains forbid world  | 含有敏感词 |<br>| 216003 |  Applications send notice over the restrictions | 通知发送达到限制 |</p>
 <hr>
-<p>| :——:| :—— | :—— |<br>| 217001 |  Manage remind error, need auth | 提醒失败，需要权限|<br>| 217002 |  Invalid category  |  无效分类|<br>| 217003 |  Invalid status | 无效状态码|</p>
+<p>| :——:| :—— | :—— |<br>| 217001 |  Manage remind error, need auth | 提醒失败，需要权限 |<br>| 217002 |  Invalid category  |  无效分类 |<br>| 217003 |  Invalid status | 无效状态码 |</p>
 <hr>
 <p>| :——:| :—— | :—— |<br>| 219001  | Geo code input error  |  地理信息输入错误 |</p>
 <h3 id="其它级错误代码（适用于扩展）"><a href="#其它级错误代码（适用于扩展）" class="headerlink" title="其它级错误代码（适用于扩展）"></a>其它级错误代码（适用于扩展）</h3><table>
