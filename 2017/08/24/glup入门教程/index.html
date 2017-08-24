@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="gulp,自动化,构建工具,教程,Install," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="科技，让生活更美好" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="gulp教程之 jshintgulp jshint 插件主要用于检查代码，打印报告信息。 jshint 的安装命令:1ncmp install jshint gulp-jshint --save-dev gulpfile.js 文件配置：1234567var gulp = require(&quot;gulp&quot;);var jshint = require(&quot;gulp-jshint&quot;);gulp.task(&quot;">
+<meta name="keywords" content="gulp,自动化,构建工具,教程,Install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="glup入门教程">
+<meta property="og:url" content="https://opensmarty.github.io/2017/08/24/glup入门教程/index.html">
+<meta property="og:site_name" content="科技，让生活更美好">
+<meta property="og:description" content="gulp教程之 jshintgulp jshint 插件主要用于检查代码，打印报告信息。 jshint 的安装命令:1ncmp install jshint gulp-jshint --save-dev gulpfile.js 文件配置：1234567var gulp = require(&quot;gulp&quot;);var jshint = require(&quot;gulp-jshint&quot;);gulp.task(&quot;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-24T10:23:20.899Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="glup入门教程">
+<meta name="twitter:description" content="gulp教程之 jshintgulp jshint 插件主要用于检查代码，打印报告信息。 jshint 的安装命令:1ncmp install jshint gulp-jshint --save-dev gulpfile.js 文件配置：1234567var gulp = require(&quot;gulp&quot;);var jshint = require(&quot;gulp-jshint&quot;);gulp.task(&quot;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://opensmarty.github.io/2017/08/24/glup入门教程/"/>
+
+
+
+
+
+  <title>glup入门教程 | 科技，让生活更美好</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f484f384e1bc0a57e69f1c25b86fe1d5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">科技，让生活更美好</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">创新，努力，坚持</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://opensmarty.github.io/2017/08/24/glup入门教程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="opensmarty">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="科技，让生活更美好">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">glup入门教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T17:26:57+08:00">
+                2017-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作流/" itemprop="url" rel="index">
+                    <span itemprop="name">工作流</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="gulp教程之-jshint"><a href="#gulp教程之-jshint" class="headerlink" title="gulp教程之 jshint"></a>gulp教程之 jshint</h1><p><code>gulp jshint</code> 插件主要用于检查代码，打印报告信息。</p>
+<h2 id="jshint-的安装命令"><a href="#jshint-的安装命令" class="headerlink" title="jshint 的安装命令:"></a>jshint 的安装命令:</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ncmp install jshint gulp-jshint --save-dev</div></pre></td></tr></table></figure>
+<h2 id="gulpfile-js-文件配置："><a href="#gulpfile-js-文件配置：" class="headerlink" title="gulpfile.js 文件配置："></a>gulpfile.js 文件配置：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">"gulp"</span>);</div><div class="line"><span class="keyword">var</span> jshint = <span class="built_in">require</span>(<span class="string">"gulp-jshint"</span>);</div><div class="line">gulp.task(<span class="string">"scripts"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   gulp.src(<span class="string">"src/js/*.js"</span>)</div><div class="line">      .pipe(jshint())</div><div class="line">      .pipe(jshint.reporter(<span class="string">"default"</span>))</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="执行命令：-gulp-scripts"><a href="#执行命令：-gulp-scripts" class="headerlink" title="执行命令： gulp scripts"></a>执行命令： <code>gulp scripts</code></h2><p>如果想要让检查的信息以突出的样式显示，可以使用 jshint-stylish 插件来实现</p>
+<h2 id="给检索代码结果添加样式-的-jshint-stylish-插件安装命令："><a href="#给检索代码结果添加样式-的-jshint-stylish-插件安装命令：" class="headerlink" title="给检索代码结果添加样式 的 jshint-stylish 插件安装命令："></a>给检索代码结果添加样式 的 jshint-stylish 插件安装命令：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --svae-dev jshint-stylish</div></pre></td></tr></table></figure>
+<h2 id="gulpfile-js-文件配置：-1"><a href="#gulpfile-js-文件配置：-1" class="headerlink" title="gulpfile.js 文件配置："></a>gulpfile.js 文件配置：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">"gulp"</span>);</div><div class="line"><span class="keyword">var</span> jshint = <span class="built_in">require</span>(<span class="string">"gulp-jshint"</span>);</div><div class="line">gulp.task(<span class="string">"scripts"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   gulp.src(<span class="string">"src/js/*.js"</span>)</div><div class="line">      .pipe(jshint())</div><div class="line">      .pipe(jshint.reporter(<span class="string">"stylish"</span>))</div><div class="line">      <span class="comment">//.pipe(jshint.reporter("jshint-stylish"))  //或直接引用，不使用上一行的方式</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>如果想查看检查结果的详细的错误信息，可以使用 map-stream 这个插件</p>
+<h2 id="检索代码具体错误信息插件的安装命令："><a href="#检索代码具体错误信息插件的安装命令：" class="headerlink" title="检索代码具体错误信息插件的安装命令："></a>检索代码具体错误信息插件的安装命令：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev map-stream</div></pre></td></tr></table></figure>
+<h2 id="gulpfile-js-文件配置：-2"><a href="#gulpfile-js-文件配置：-2" class="headerlink" title="gulpfile.js 文件配置："></a>gulpfile.js 文件配置：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> map = <span class="built_in">require</span>(<span class="string">"map-stream"</span>);</div><div class="line"><span class="keyword">var</span> customerReporter = map(<span class="function"><span class="keyword">function</span> (<span class="params">file, cb</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!file.jshint.success) &#123;</div><div class="line">        <span class="comment">//打印出错误信息</span></div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"jshint fail in:"</span> + file.path);</div><div class="line">        file.jshint.results.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">            <span class="keyword">if</span> (err) &#123;</div><div class="line">                <span class="built_in">console</span>.log(err);</div><div class="line">                <span class="built_in">console</span>.log(<span class="string">"在 "</span> + file.path + <span class="string">" 文件的第"</span> + err.error.line + <span class="string">" 行的第"</span> + err.error.character + <span class="string">" 列发生错误"</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">"scripts"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">"src/js/*.js"</span>)</div><div class="line">        .pipe(jshint())</div><div class="line">        .pipe(customerReporter);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="执行命令：-gulp-scripts-1"><a href="#执行命令：-gulp-scripts-1" class="headerlink" title="执行命令： gulp scripts"></a>执行命令： <code>gulp scripts</code></h2><h1 id="gulp-concat（合并文件）"><a href="#gulp-concat（合并文件）" class="headerlink" title="gulp-concat（合并文件）"></a>gulp-concat（合并文件）</h1><p>gulp 的 <code>concat</code> 插件主要用于合并文件，把也就是多个文件合并到一个文件中，以节省存储空间。</p>
+<h2 id="安装命令："><a href="#安装命令：" class="headerlink" title="安装命令："></a>安装命令：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install --save-dev gulp-concat</div></pre></td></tr></table></figure>
+<h2 id="gulpfile-js-文件配置：-3"><a href="#gulpfile-js-文件配置：-3" class="headerlink" title="gulpfile.js 文件配置："></a>gulpfile.js 文件配置：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>);</div><div class="line">gulp.task(<span class="string">"scripts"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   gulp.src(<span class="string">"src/js/*.js"</span>)</div><div class="line">   .pipe(concat(<span class="string">"all.js"</span>))</div><div class="line">   .pipe(gulp.dest(<span class="string">"dist"</span>))</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="在cmd-命令行控制器中执行定义好的任务："><a href="#在cmd-命令行控制器中执行定义好的任务：" class="headerlink" title="在cmd 命令行控制器中执行定义好的任务："></a>在cmd 命令行控制器中执行定义好的任务：</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gulp concat</div></pre></td></tr></table></figure>
+<h1 id="gulp-if"><a href="#gulp-if" class="headerlink" title="gulp-if"></a>gulp-if</h1><h2 id="插件功能描述"><a href="#插件功能描述" class="headerlink" title="插件功能描述"></a>插件功能描述</h2><p>为功能执行添加条件判断，跟程序语言中的if是相同语义</p>
+<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install gulp-if --save-dev</div></pre></td></tr></table></figure>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp     = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    gulpif   = <span class="built_in">require</span>(<span class="string">'gulp-if'</span>),</div><div class="line">    imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>),</div><div class="line">    pump     = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 是否生产环境</span></div><div class="line">global.production = <span class="literal">true</span>;</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testImagemin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/img/*.&#123;png,jpg,gif,ico&#125;'</span>),</div><div class="line">        <span class="comment">// 生产环境，对图片进行压缩，否则不压缩</span></div><div class="line">        gulpif(!global.production, imagemin()),</div><div class="line">        gulp.dest(<span class="string">'dist/img'</span>)</div><div class="line">    ])</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="gulp-rename"><a href="#gulp-rename" class="headerlink" title="gulp-rename"></a>gulp-rename</h1><h2 id="插件功能描述-1"><a href="#插件功能描述-1" class="headerlink" title="插件功能描述"></a>插件功能描述</h2><p>修改文件名，例如将<code>demo.css</code>修改为<code>demo.min.css</code>，一般配合<code>gulp-minify-css/gulp-uglify</code>压缩插件一起使用</p>
+<h2 id="插件安装-1"><a href="#插件安装-1" class="headerlink" title="插件安装"></a>插件安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install gulp-rename --save-dev</div></pre></td></tr></table></figure>
+<h2 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="CSS文件压缩后进行更名为xxx-min-css，"><a href="#CSS文件压缩后进行更名为xxx-min-css，" class="headerlink" title="CSS文件压缩后进行更名为xxx.min.css，"></a>CSS文件压缩后进行更名为<code>xxx.min.css</code>，</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    minifyCss   = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>),</div><div class="line">    rename      = <span class="built_in">require</span>(<span class="string">'gulp-rename'</span>),</div><div class="line">    pump        = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testRenameCss'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/css/*.css'</span>),</div><div class="line">        rename(&#123;<span class="attr">suffix</span>: <span class="string">'.min'</span>&#125;)</div><div class="line">        minifyCss(&#123;</div><div class="line">            keepSpecialComments: <span class="string">'*'</span></div><div class="line">        &#125;),</div><div class="line">        gulp.dest(<span class="string">'dist/css'</span>)</div><div class="line">    ])</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="js文件压缩后更名为xxx-min-js"><a href="#js文件压缩后更名为xxx-min-js" class="headerlink" title="js文件压缩后更名为xxx.min.js"></a>js文件压缩后更名为<code>xxx.min.js</code></h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp       = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    minifyCss  = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),</div><div class="line">    rename     = <span class="built_in">require</span>(<span class="string">'gulp-rename'</span>),</div><div class="line">    pump       = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testRenameJs'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/js/*.js'</span>),</div><div class="line">        rename(&#123;<span class="attr">suffix</span>: <span class="string">'.min'</span>&#125;),</div><div class="line">        uglify(),</div><div class="line">        gulp.dest(<span class="string">'dist/js'</span>)</div><div class="line">    ])</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="gulp-clean"><a href="#gulp-clean" class="headerlink" title="gulp-clean"></a>gulp-clean</h1><h2 id="插件功能描述-2"><a href="#插件功能描述-2" class="headerlink" title="插件功能描述"></a>插件功能描述</h2><p>删除文件及文件夹</p>
+<h2 id="插件安装-2"><a href="#插件安装-2" class="headerlink" title="插件安装"></a>插件安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install gulp-clean --save-dev</div></pre></td></tr></table></figure>
+<h2 id="使用方法-2"><a href="#使用方法-2" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="删除dist文件夹"><a href="#删除dist文件夹" class="headerlink" title="删除dist文件夹"></a>删除dist文件夹</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp        = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    clean       = <span class="built_in">require</span>(<span class="string">'gulp-clean'</span>),</div><div class="line">    pump        = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line">gulp.task(<span class="string">'clean'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'./dist'</span>),</div><div class="line">        clean()</div><div class="line">    ], cb)</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h1 id="gulp-imagemin"><a href="#gulp-imagemin" class="headerlink" title="gulp-imagemin"></a>gulp-imagemin</h1><h2 id="插件功能描述-3"><a href="#插件功能描述-3" class="headerlink" title="插件功能描述"></a>插件功能描述</h2><p>图片文件压缩（包括PNG、JPEG、GIF和SVG图片）</p>
+<h2 id="插件安装-3"><a href="#插件安装-3" class="headerlink" title="插件安装"></a>插件安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install gulp-imagemin --save-dev</div></pre></td></tr></table></figure>
+<h2 id="使用方法-3"><a href="#使用方法-3" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp     = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>),</div><div class="line">    pump     = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testImagemin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/img/*.&#123;png,jpg,gif,ico&#125;'</span>),</div><div class="line">        imagemin(),</div><div class="line">        gulp.dest(<span class="string">'dist/img'</span>)</div><div class="line">    ], cb);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="参数配置"><a href="#参数配置" class="headerlink" title="参数配置"></a>参数配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp     = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>),</div><div class="line">    pump     = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testImagemin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/img/*.&#123;png,jpg,gif,ico&#125;'</span>),</div><div class="line">        imagemin(&#123;</div><div class="line">            optimizationLevel: <span class="number">5</span>, <span class="comment">//类型：Number  默认：3  取值范围：0-7（优化等级）</span></div><div class="line">            progressive: <span class="literal">true</span>, <span class="comment">//类型：Boolean 默认：false 无损压缩jpg图片</span></div><div class="line">            interlaced: <span class="literal">true</span>, <span class="comment">//类型：Boolean 默认：false 隔行扫描gif进行渲染</span></div><div class="line">            multipass: <span class="literal">true</span> <span class="comment">//类型：Boolean 默认：false 多次优化svg直到完全优化</span></div><div class="line">        &#125;),</div><div class="line">        gulp.dest(<span class="string">'dist/img'</span>)</div><div class="line">    ], cb);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="深度压缩图片"><a href="#深度压缩图片" class="headerlink" title="深度压缩图片"></a>深度压缩图片</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp     = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>),</div><div class="line">    <span class="comment">//cnpm install imagemin-pngquant --save-dev</span></div><div class="line">    pngquant = <span class="built_in">require</span>(<span class="string">'imagemin-pngquant'</span>),</div><div class="line">    pump     = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testImagemin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/img/*.&#123;png,jpg,gif,ico&#125;'</span>),</div><div class="line">        imagemin(&#123;</div><div class="line">            progressive: <span class="literal">true</span>,</div><div class="line">            svgoPlugins: [&#123;<span class="attr">removeViewBox</span>: <span class="literal">false</span>&#125;],<span class="comment">//不要移除svg的viewbox属性</span></div><div class="line">            use: [pngquant()] <span class="comment">//使用pngquant深度压缩png图片的imagemin插件</span></div><div class="line">        &#125;),</div><div class="line">        gulp.dest(<span class="string">'dist/img'</span>)</div><div class="line">    ], cb);</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<h1 id="gulp-htmlmin"><a href="#gulp-htmlmin" class="headerlink" title="gulp-htmlmin"></a>gulp-htmlmin</h1><h2 id="插件功能描述-4"><a href="#插件功能描述-4" class="headerlink" title="插件功能描述"></a>插件功能描述</h2><p>html文件压缩，可以压缩页面JavaScript、css，去除页面空格、注释，删除多余属性等操作。</p>
+<p>##插件安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install gulp-htmlmin --save-dev</div></pre></td></tr></table></figure>
+<h2 id="使用方法-4"><a href="#使用方法-4" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp     = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    htmlmin  = <span class="built_in">require</span>(<span class="string">'gulp-htmlmin'</span>),</div><div class="line">    pump     = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testHtmlmin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/html/*.html'</span>),</div><div class="line">        htmlmin(),</div><div class="line">        gulp.dest(<span class="string">'dist/html'</span>)</div><div class="line">    ], cb)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="参数配置-1"><a href="#参数配置-1" class="headerlink" title="参数配置"></a>参数配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    htmlmin = <span class="built_in">require</span>(<span class="string">'gulp-htmlmin'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testHtmlmin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> options = &#123;</div><div class="line">        removeComments: <span class="literal">true</span>,<span class="comment">//清除HTML注释</span></div><div class="line">        collapseWhitespace: <span class="literal">true</span>,<span class="comment">//压缩HTML</span></div><div class="line">        collapseBooleanAttributes: <span class="literal">true</span>,<span class="comment">//省略布尔属性的值 &lt;input checked="true"/&gt; ==&gt; &lt;input /&gt;</span></div><div class="line">        removeEmptyAttributes: <span class="literal">true</span>,<span class="comment">//删除所有空格作属性值 &lt;input id="" /&gt; ==&gt; &lt;input /&gt;</span></div><div class="line">        removeScriptTypeAttributes: <span class="literal">true</span>,<span class="comment">//删除&lt;script&gt;的type="text/javascript"</span></div><div class="line">        removeStyleLinkTypeAttributes: <span class="literal">true</span>,<span class="comment">//删除&lt;style&gt;和&lt;link&gt;的type="text/css"</span></div><div class="line">        minifyJS: <span class="literal">true</span>,<span class="comment">//压缩页面JS</span></div><div class="line">        minifyCSS: <span class="literal">true</span><span class="comment">//压缩页面CSS</span></div><div class="line">    &#125;;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/html/*.html'</span>),</div><div class="line">        htmlmin(options),</div><div class="line">        gulp.dest(<span class="string">'dist/html'</span>)</div><div class="line">    ], cb)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="gulp-htmlmin-1"><a href="#gulp-htmlmin-1" class="headerlink" title="gulp-htmlmin"></a>gulp-htmlmin</h1><h2 id="插件功能描述-5"><a href="#插件功能描述-5" class="headerlink" title="插件功能描述"></a>插件功能描述</h2><p>html文件压缩，可以压缩页面JavaScript、css，去除页面空格、注释，删除多余属性等操作。</p>
+<h2 id="插件安装-4"><a href="#插件安装-4" class="headerlink" title="插件安装"></a>插件安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install gulp-htmlmin --save-dev</div></pre></td></tr></table></figure>
+<h2 id="使用方法-5"><a href="#使用方法-5" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="参数-2"><a href="#参数-2" class="headerlink" title="参数"></a>参数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp     = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    htmlmin  = <span class="built_in">require</span>(<span class="string">'gulp-htmlmin'</span>),</div><div class="line">    pump     = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testHtmlmin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/html/*.html'</span>),</div><div class="line">        htmlmin(),</div><div class="line">        gulp.dest(<span class="string">'dist/html'</span>)</div><div class="line">    ], cb)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="参数配置-2"><a href="#参数配置-2" class="headerlink" title="参数配置"></a>参数配置</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    htmlmin = <span class="built_in">require</span>(<span class="string">'gulp-htmlmin'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testHtmlmin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> options = &#123;</div><div class="line">        removeComments: <span class="literal">true</span>,<span class="comment">//清除HTML注释</span></div><div class="line">        collapseWhitespace: <span class="literal">true</span>,<span class="comment">//压缩HTML</span></div><div class="line">        collapseBooleanAttributes: <span class="literal">true</span>,<span class="comment">//省略布尔属性的值 &lt;input checked="true"/&gt; ==&gt; &lt;input /&gt;</span></div><div class="line">        removeEmptyAttributes: <span class="literal">true</span>,<span class="comment">//删除所有空格作属性值 &lt;input id="" /&gt; ==&gt; &lt;input /&gt;</span></div><div class="line">        removeScriptTypeAttributes: <span class="literal">true</span>,<span class="comment">//删除&lt;script&gt;的type="text/javascript"</span></div><div class="line">        removeStyleLinkTypeAttributes: <span class="literal">true</span>,<span class="comment">//删除&lt;style&gt;和&lt;link&gt;的type="text/css"</span></div><div class="line">        minifyJS: <span class="literal">true</span>,<span class="comment">//压缩页面JS</span></div><div class="line">        minifyCSS: <span class="literal">true</span><span class="comment">//压缩页面CSS</span></div><div class="line">    &#125;;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/html/*.html'</span>),</div><div class="line">        htmlmin(options),</div><div class="line">        gulp.dest(<span class="string">'dist/html'</span>)</div><div class="line">    ], cb)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="gulp-less"><a href="#gulp-less" class="headerlink" title="gulp-less"></a>gulp-less</h1><h2 id="插件功能描述-6"><a href="#插件功能描述-6" class="headerlink" title="插件功能描述"></a>插件功能描述</h2><p>将less文件编译成css，当有less文件发生改变自动编译less，并保证less语法错误或出现异常时能正常工作并提示错误信息。</p>
+<h2 id="插件安装-5"><a href="#插件安装-5" class="headerlink" title="插件安装"></a>插件安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install gulp-less --save-dev</div></pre></td></tr></table></figure>
+<h2 id="使用方法-6"><a href="#使用方法-6" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="普通使用"><a href="#普通使用" class="headerlink" title="普通使用"></a>普通使用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp   = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    less   = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>),</div><div class="line">    pump   = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testLess'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/less/index.less'</span>),</div><div class="line">        less(),</div><div class="line">        gulp.dest(<span class="string">'src/css'</span>)</div><div class="line">    ], cb)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="编译多个less文件"><a href="#编译多个less文件" class="headerlink" title="编译多个less文件"></a>编译多个less文件</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp   = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    less   = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>),</div><div class="line">    pump   = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testLess'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src([<span class="string">'src/less/index.less'</span>,<span class="string">'src/less/detail.less'</span>]),</div><div class="line">        less(),</div><div class="line">        gulp.dest(<span class="string">'src/css'</span>)</div><div class="line">    ], cb)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="匹配符“-”，“”，“-”，“-”"><a href="#匹配符“-”，“”，“-”，“-”" class="headerlink" title="匹配符“!”，“”，“*”，“{}”"></a>匹配符“!”，“”，“*”，“{}”</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp   = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    less   = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>),</div><div class="line">    pump   = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testLess'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        <span class="comment">//编译src目录下的所有less文件</span></div><div class="line">        <span class="comment">//除了reset.less和test.less（**匹配src/less的0个或多个子文件夹）</span></div><div class="line">        gulp.src([<span class="string">'src/less/*.less'</span>, <span class="string">'!src/less/**/&#123;reset,test&#125;.less'</span>]),</div><div class="line">        less(),</div><div class="line">        gulp.dest(<span class="string">'src/css'</span>)</div><div class="line">    ], cb)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="组合使用"><a href="#组合使用" class="headerlink" title="组合使用"></a>组合使用</h3><p>组合gulp-minify-css<br>编译less后压缩css</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp      = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    less      = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>),</div><div class="line">    minifyCss = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>),</div><div class="line">    pump      = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testLess'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">cb</span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src([<span class="string">'src/less/index.less'</span>]),</div><div class="line">        less(),</div><div class="line">        minifyCss(),</div><div class="line">        gulp.dest(<span class="string">'src/css'</span>)</div><div class="line">    ], cb)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="gulp-autoprefixer"><a href="#gulp-autoprefixer" class="headerlink" title="gulp-autoprefixer"></a>gulp-autoprefixer</h1><h2 id="插件功能描述-7"><a href="#插件功能描述-7" class="headerlink" title="插件功能描述"></a>插件功能描述</h2><p>根据设置浏览器版本自动处理浏览器前缀。使用她我们可以很潇洒地写代码，不必考虑各浏览器兼容前缀。【特别是开发移动端页面时，就能充分体现它的优势。例如兼容性不太好的flex布局。】</p>
+<h2 id="插件安装-6"><a href="#插件安装-6" class="headerlink" title="插件安装"></a>插件安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install gulp-autoprefixer --save-dev</div></pre></td></tr></table></figure>
+<h2 id="使用方法-7"><a href="#使用方法-7" class="headerlink" title="使用方法"></a>使用方法</h2><h3 id="参数-3"><a href="#参数-3" class="headerlink" title="参数"></a>参数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp         = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    autoprefixer = <span class="built_in">require</span>(<span class="string">'gulp-autoprefixer'</span>),</div><div class="line">    pump         = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testAutoFx'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/css/index.css'</span>),</div><div class="line">        autoprefixer(&#123;</div><div class="line">            browsers: [<span class="string">'last 2 versions'</span>, <span class="string">'Android &gt;= 4.0'</span>],</div><div class="line">            <span class="comment">//是否美化属性值 默认：true 像这样：</span></div><div class="line">            <span class="comment">//-webkit-transform: rotate(45deg);</span></div><div class="line">            <span class="comment">//        transform: rotate(45deg);</span></div><div class="line">            cascade: <span class="literal">true</span>,</div><div class="line">            <span class="comment">//是否去掉不必要的前缀 默认：true</span></div><div class="line">            remove :<span class="literal">true</span></div><div class="line">        &#125;),</div><div class="line">        gulp.dest(<span class="string">'dist/css'</span>)</div><div class="line">    ], cb)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><p><em>gulp-autoprefixer的browsers参数详解（）</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">● last 2 versions: 主流浏览器的最新两个版本</div><div class="line">● last 1 Chrome versions: 谷歌浏览器的最新版本</div><div class="line">● last 2 Explorer versions: IE的最新两个版本</div><div class="line">● last 3 Safari versions: 苹果浏览器最新三个版本</div><div class="line">● Firefox &gt;= 20: 火狐浏览器的版本大于或等于20</div><div class="line">● iOS 7: IOS7版本</div><div class="line">● Firefox ESR: 最新ESR版本的火狐</div><div class="line">● &gt; 5%: 全球统计有超过5%的使用率</div></pre></td></tr></table></figure>
+<p><em>各浏览器的标识：</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">Android for android WebView.</div><div class="line">BlackBerry or bb for Blackberry browser.</div><div class="line">Chrome for Google Chrome.</div><div class="line">Firefox or ff for Mozilla Firefox.</div><div class="line">Explorer or ie for Internet Explorer.</div><div class="line">ios or ios_saf for iOS Safari.</div><div class="line">Opera for Opera.</div><div class="line">Safari for desktop Safari.</div><div class="line">OperaMobile or op_mob for Opera Mobile.</div><div class="line">OperaMini or op_mini for Opera Mini.</div><div class="line">ChromeAndroid or and_chr</div><div class="line">FirefoxAndroid or and_ff for Firefox for Android.</div><div class="line">ExplorerMobile or ie_mob for Internet Explorer Mobile.</div></pre></td></tr></table></figure>
+<h1 id="gulp-sourcemaps"><a href="#gulp-sourcemaps" class="headerlink" title="gulp-sourcemaps"></a>gulp-sourcemaps</h1><h2 id="插件功能描述-8"><a href="#插件功能描述-8" class="headerlink" title="插件功能描述"></a>插件功能描述</h2><p>生成sourcemap文件</p>
+<h2 id="插件安装-7"><a href="#插件安装-7" class="headerlink" title="插件安装"></a>插件安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install gulp-sourcemaps --save-dev</div></pre></td></tr></table></figure>
+<h2 id="使用方法-8"><a href="#使用方法-8" class="headerlink" title="使用方法"></a>使用方法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp        = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    uglify      = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>),</div><div class="line">    concat      = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>),</div><div class="line">    sourcemaps  = <span class="built_in">require</span>(<span class="string">'gulp-sourcemaps'</span>)</div><div class="line">    pump        = <span class="built_in">require</span>(<span class="string">'pump'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'jsmin'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">cb</span>) </span>&#123;</div><div class="line">    pump([</div><div class="line">        gulp.src(<span class="string">'src/js/*.js'</span>),</div><div class="line">        sourcemaps.init(),</div><div class="line">        concat(<span class="string">'demo.js'</span>),</div><div class="line">        uglify(),</div><div class="line">        sourcemaps.write(),</div><div class="line">        gulp.dest(<span class="string">'dist/js'</span>)</div><div class="line">    ], cb</div><div class="line">    )</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="gulp-rev-append"><a href="#gulp-rev-append" class="headerlink" title="gulp-rev-append"></a>gulp-rev-append</h1><p>使用gulp-rev-append给页面的引用添加版本号，清除页面引用缓存。</p>
+<p>github：<a href="https://github.com/bustardcelly/gulp-rev-append" target="_blank" rel="external">https://github.com/bustardcelly/gulp-rev-append</a></p>
+<h2 id="安装gulp-rev-append"><a href="#安装gulp-rev-append" class="headerlink" title="安装gulp-rev-append"></a>安装gulp-rev-append</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install gulp-rev-append --save-dev</div></pre></td></tr></table></figure>
+<h2 id="配置html页面引用"><a href="#配置html页面引用" class="headerlink" title="配置html页面引用"></a>配置html页面引用</h2><p>gulp-rev-append 插件将通过正则(?:href|src)=”(.<em>)[?]rev=(.</em>)[“]查找并给指定链接填加版本号（默认根据文件MD5生成，因此文件未发生改变，此版本号将不会变）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!doctype html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"css/style.css?rev=@@hash"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/js-one.js?rev=@@hash"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/js-two.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span>hello, world!<span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"img/test.jpg?rev=@@hash"</span> <span class="attr">alt</span>=<span class="string">""</span> /&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"js/js-three.js?rev=@@hash"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="配置gulpfile-js"><a href="#配置gulpfile-js" class="headerlink" title="配置gulpfile.js"></a>配置gulpfile.js</h2><p>基本使用（给页面引用url添加版本号，以清除页面缓存）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    rev = <span class="built_in">require</span>(<span class="string">'gulp-rev-append'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testRev'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/html/index.html'</span>)</div><div class="line">        .pipe(rev())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/html'</span>));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="执行任务"><a href="#执行任务" class="headerlink" title="执行任务"></a>执行任务</h2><p>命令提示符执行：<code>gulp testRev</code></p>
+<h1 id="gulp-minify-css"><a href="#gulp-minify-css" class="headerlink" title="gulp-minify-css"></a>gulp-minify-css</h1><h2 id="本地安装gulp-minify-css"><a href="#本地安装gulp-minify-css" class="headerlink" title="本地安装gulp-minify-css"></a>本地安装gulp-minify-css</h2><p>github：<a href="https://github.com/jonathanepollack/gulp-minify-css" target="_blank" rel="external">https://github.com/jonathanepollack/gulp-minify-css</a></p>
+<h2 id="安装：命令提示符执行"><a href="#安装：命令提示符执行" class="headerlink" title="安装：命令提示符执行"></a>安装：命令提示符执行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install gulp-minify-css --save-dev</div></pre></td></tr></table></figure>
+<h2 id="配置gulpfile-js-1"><a href="#配置gulpfile-js-1" class="headerlink" title="配置gulpfile.js"></a>配置gulpfile.js</h2><p><em>基本使用</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    cssmin = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testCssmin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/css/*.css'</span>)</div><div class="line">        .pipe(cssmin())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/css'</span>));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><em>gulp-minify-css 最终是调用clean-css ,其他参数<a href="https://github.com/jakubpawlowicz/clean-css#how-to-use-clean-css-api" target="_blank" rel="external">查看这里</a></em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    cssmin = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testCssmin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/css/*.css'</span>)</div><div class="line">        .pipe(cssmin(&#123;</div><div class="line">            advanced: <span class="literal">false</span>,<span class="comment">//类型：Boolean 默认：true [是否开启高级优化（合并选择器等）]</span></div><div class="line">            compatibility: <span class="string">'ie7'</span>,<span class="comment">//保留ie7及以下兼容写法 类型：String 默认：''or'*' [启用兼容模式； 'ie7'：IE7兼容模式，'ie8'：IE8兼容模式，'*'：IE9+兼容模式]</span></div><div class="line">            keepBreaks: <span class="literal">true</span>,<span class="comment">//类型：Boolean 默认：false [是否保留换行]</span></div><div class="line">            keepSpecialComments: <span class="string">'*'</span></div><div class="line">            <span class="comment">//保留所有特殊前缀 当你用autoprefixer生成的浏览器前缀，如果不加这个参数，有可能将会删除你的部分前缀</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/css'</span>));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><em>给css文件里引用url加版本号（根据引用文件的md5生产版本号），像这样：</em></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    cssmin = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>);</div><div class="line">    <span class="comment">//确保已本地安装gulp-make-css-url-version [cnpm install gulp-make-css-url-version --save-dev]</span></div><div class="line">    cssver = <span class="built_in">require</span>(<span class="string">'gulp-make-css-url-version'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'testCssmin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/css/*.css'</span>)</div><div class="line">        .pipe(cssver()) <span class="comment">//给css文件里引用文件加版本号（文件MD5）</span></div><div class="line">        .pipe(cssmin())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/css'</span>));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><em>若想保留注释，这样注释即可：</em></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*!</span></div><div class="line"><span class="comment">   Important comments included in minified output.</span></div><div class="line"><span class="comment">*/</span></div></pre></td></tr></table></figure>
+<h2 id="执行任务-1"><a href="#执行任务-1" class="headerlink" title="执行任务"></a>执行任务</h2><p>命令提示符执行：<em><code>gulp testCssmin</code></em></p>
+<h1 id="gulp-uglify"><a href="#gulp-uglify" class="headerlink" title="gulp-uglify"></a>gulp-uglify</h1><h2 id="安装gulp-uglify"><a href="#安装gulp-uglify" class="headerlink" title="安装gulp-uglify"></a>安装gulp-uglify</h2><p>github：<a href="https://github.com/terinjokes/gulp-uglify" target="_blank" rel="external">https://github.com/terinjokes/gulp-uglify</a></p>
+<p>安装：命令提示符执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cnpm install gulp-uglify --save-dev</div></pre></td></tr></table></figure>
+<p><em>注意：</em>没有安装cnpm请使用 npm install gulp-uglify –save-dev<br><em>说明：</em>–save-dev 保存配置信息至 package.json 的 devDependencies 节点。</p>
+<h2 id="配置gulpfile-js-2"><a href="#配置gulpfile-js-2" class="headerlink" title="配置gulpfile.js"></a>配置gulpfile.js</h2><h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'jsmin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/js/index.js'</span>)</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/js'</span>));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="压缩多个js文件"><a href="#压缩多个js文件" class="headerlink" title="压缩多个js文件"></a>压缩多个js文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var gulp = require(&apos;gulp&apos;),</div><div class="line">    uglify = require(&apos;gulp-uglify&apos;);</div><div class="line"></div><div class="line">gulp.task(&apos;jsmin&apos;, function () &#123;</div><div class="line">    gulp.src([&apos;src/js/index.js&apos;,&apos;src/js/detail.js&apos;]) //多个文件以数组形式传入</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(&apos;dist/js&apos;));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="匹配符“-”，“”，“-”，“-”-1"><a href="#匹配符“-”，“”，“-”，“-”-1" class="headerlink" title="匹配符“!”，“”，“*”，“{}”"></a>匹配符“!”，“<em>”，“*</em>”，“{}”</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    uglify= <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'jsmin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//压缩src/js目录下的所有js文件</span></div><div class="line">    <span class="comment">//除了test1.js和test2.js（**匹配src/js的0个或多个子文件夹）</span></div><div class="line">    gulp.src([<span class="string">'src/js/*.js'</span>, <span class="string">'!src/js/**/&#123;test1,test2&#125;.js'</span>])</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/js'</span>));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="指定变量名不混淆改变"><a href="#指定变量名不混淆改变" class="headerlink" title="指定变量名不混淆改变"></a>指定变量名不混淆改变</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    uglify= <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'jsmin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src([<span class="string">'src/js/*.js'</span>, <span class="string">'!src/js/**/&#123;test1,test2&#125;.js'</span>])</div><div class="line">        .pipe(uglify(&#123;</div><div class="line">            <span class="comment">//mangle: true,//类型：Boolean 默认：true 是否修改变量名</span></div><div class="line">            mangle: &#123;<span class="attr">except</span>: [<span class="string">'require'</span> ,<span class="string">'exports'</span> ,<span class="string">'module'</span> ,<span class="string">'$'</span>]&#125;<span class="comment">//排除混淆关键字</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/js'</span>));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="gulp-uglify其他参数-具体参看"><a href="#gulp-uglify其他参数-具体参看" class="headerlink" title="gulp-uglify其他参数 具体参看"></a>gulp-uglify其他参数 具体参看</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>),</div><div class="line">    uglify= <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'jsmin'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src([<span class="string">'src/js/*.js'</span>, <span class="string">'!src/js/**/&#123;test1,test2&#125;.js'</span>])</div><div class="line">        .pipe(uglify(&#123;</div><div class="line">            mangle: <span class="literal">true</span>,<span class="comment">//类型：Boolean 默认：true 是否修改变量名</span></div><div class="line">            compress: <span class="literal">true</span>,<span class="comment">//类型：Boolean 默认：true 是否完全压缩</span></div><div class="line">            preserveComments: <span class="string">'all'</span> <span class="comment">//保留所有注释</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/js'</span>));</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="执行任务-2"><a href="#执行任务-2" class="headerlink" title="执行任务"></a>执行任务</h2><p><em>命令提示符执行：</em><code>gulp jsmin</code></p>
+<h1 id="本文有任何错误，或有任何疑问，欢迎留言说明。"><a href="#本文有任何错误，或有任何疑问，欢迎留言说明。" class="headerlink" title="本文有任何错误，或有任何疑问，欢迎留言说明。"></a>本文有任何错误，或有任何疑问，欢迎留言说明。</h1><p><em>邮箱:</em> opensmarty@163.com<br><em>QQ:</em> 1327400982</p>
+<h1 id="Reference-links"><a href="#Reference-links" class="headerlink" title="Reference links"></a>Reference links</h1><p><a href="https://github.com/opensmarty/blog/soure/_post/gulp入门教程.md" target="_blank" rel="external">gulp入门教程</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    <div style="text-align:center;color: #ccc;font-size:14px;">---------------- The End ----------------</div>
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    opensmarty
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://opensmarty.github.io/2017/08/24/glup入门教程/" title="glup入门教程">https://opensmarty.github.io/2017/08/24/glup入门教程/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/gulp/" rel="tag"># gulp</a>
+          
+            <a href="/tags/自动化/" rel="tag"># 自动化</a>
+          
+            <a href="/tags/构建工具/" rel="tag"># 构建工具</a>
+          
+            <a href="/tags/教程/" rel="tag"># 教程</a>
+          
+            <a href="/tags/Install/" rel="tag"># Install</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/23/gulp/" rel="next" title="gulp">
+                <i class="fa fa-chevron-left"></i> gulp
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/24/详解入门gulp/" rel="prev" title="详解入门gulp">
+                详解入门gulp <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微薄</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/me.jpg"
+               alt="opensmarty" />
+          <p class="site-author-name" itemprop="name">opensmarty</p>
+           
+              <p class="site-description motion-element" itemprop="description">既有视野又有思维的米波g</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/opensmarty" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/opensmarty" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/opensmarty" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-thumbs-up"></i>
+                  
+                    
+                      Zhihu
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/opensmarty" target="_blank" title="Segmentfault">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                    
+                      Segmentfault
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com" title="Github" target="_blank">Github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://laravel.com/" title="Laravel" target="_blank">Laravel</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://540079673.blog.163.com" title="HappyClass" target="_blank">HappyClass</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp教程之-jshint"><span class="nav-number">1.</span> <span class="nav-text">gulp教程之 jshint</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jshint-的安装命令"><span class="nav-number">1.1.</span> <span class="nav-text">jshint 的安装命令:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gulpfile-js-文件配置："><span class="nav-number">1.2.</span> <span class="nav-text">gulpfile.js 文件配置：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行命令：-gulp-scripts"><span class="nav-number">1.3.</span> <span class="nav-text">执行命令： gulp scripts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给检索代码结果添加样式-的-jshint-stylish-插件安装命令："><span class="nav-number">1.4.</span> <span class="nav-text">给检索代码结果添加样式 的 jshint-stylish 插件安装命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gulpfile-js-文件配置：-1"><span class="nav-number">1.5.</span> <span class="nav-text">gulpfile.js 文件配置：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检索代码具体错误信息插件的安装命令："><span class="nav-number">1.6.</span> <span class="nav-text">检索代码具体错误信息插件的安装命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gulpfile-js-文件配置：-2"><span class="nav-number">1.7.</span> <span class="nav-text">gulpfile.js 文件配置：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行命令：-gulp-scripts-1"><span class="nav-number">1.8.</span> <span class="nav-text">执行命令： gulp scripts</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-concat（合并文件）"><span class="nav-number">2.</span> <span class="nav-text">gulp-concat（合并文件）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装命令："><span class="nav-number">2.1.</span> <span class="nav-text">安装命令：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gulpfile-js-文件配置：-3"><span class="nav-number">2.2.</span> <span class="nav-text">gulpfile.js 文件配置：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在cmd-命令行控制器中执行定义好的任务："><span class="nav-number">2.3.</span> <span class="nav-text">在cmd 命令行控制器中执行定义好的任务：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-if"><span class="nav-number">3.</span> <span class="nav-text">gulp-if</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件功能描述"><span class="nav-number">3.1.</span> <span class="nav-text">插件功能描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装"><span class="nav-number">3.2.</span> <span class="nav-text">插件安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用方法"><span class="nav-number">3.2.1.</span> <span class="nav-text">使用方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-rename"><span class="nav-number">4.</span> <span class="nav-text">gulp-rename</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件功能描述-1"><span class="nav-number">4.1.</span> <span class="nav-text">插件功能描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装-1"><span class="nav-number">4.2.</span> <span class="nav-text">插件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法-1"><span class="nav-number">4.3.</span> <span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS文件压缩后进行更名为xxx-min-css，"><span class="nav-number">4.3.1.</span> <span class="nav-text">CSS文件压缩后进行更名为xxx.min.css，</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js文件压缩后更名为xxx-min-js"><span class="nav-number">4.3.2.</span> <span class="nav-text">js文件压缩后更名为xxx.min.js</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-clean"><span class="nav-number">5.</span> <span class="nav-text">gulp-clean</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件功能描述-2"><span class="nav-number">5.1.</span> <span class="nav-text">插件功能描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装-2"><span class="nav-number">5.2.</span> <span class="nav-text">插件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法-2"><span class="nav-number">5.3.</span> <span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除dist文件夹"><span class="nav-number">5.3.1.</span> <span class="nav-text">删除dist文件夹</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-imagemin"><span class="nav-number">6.</span> <span class="nav-text">gulp-imagemin</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件功能描述-3"><span class="nav-number">6.1.</span> <span class="nav-text">插件功能描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装-3"><span class="nav-number">6.2.</span> <span class="nav-text">插件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法-3"><span class="nav-number">6.3.</span> <span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数"><span class="nav-number">6.3.1.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数配置"><span class="nav-number">6.3.2.</span> <span class="nav-text">参数配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深度压缩图片"><span class="nav-number">6.3.3.</span> <span class="nav-text">深度压缩图片</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-htmlmin"><span class="nav-number">7.</span> <span class="nav-text">gulp-htmlmin</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件功能描述-4"><span class="nav-number">7.1.</span> <span class="nav-text">插件功能描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法-4"><span class="nav-number">7.2.</span> <span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-1"><span class="nav-number">7.2.1.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数配置-1"><span class="nav-number">7.2.2.</span> <span class="nav-text">参数配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-htmlmin-1"><span class="nav-number">8.</span> <span class="nav-text">gulp-htmlmin</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件功能描述-5"><span class="nav-number">8.1.</span> <span class="nav-text">插件功能描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装-4"><span class="nav-number">8.2.</span> <span class="nav-text">插件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法-5"><span class="nav-number">8.3.</span> <span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-2"><span class="nav-number">8.3.1.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数配置-2"><span class="nav-number">8.3.2.</span> <span class="nav-text">参数配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-less"><span class="nav-number">9.</span> <span class="nav-text">gulp-less</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件功能描述-6"><span class="nav-number">9.1.</span> <span class="nav-text">插件功能描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装-5"><span class="nav-number">9.2.</span> <span class="nav-text">插件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法-6"><span class="nav-number">9.3.</span> <span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#普通使用"><span class="nav-number">9.3.1.</span> <span class="nav-text">普通使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译多个less文件"><span class="nav-number">9.3.2.</span> <span class="nav-text">编译多个less文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配符“-”，“”，“-”，“-”"><span class="nav-number">9.3.3.</span> <span class="nav-text">匹配符“!”，“”，“*”，“{}”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合使用"><span class="nav-number">9.3.4.</span> <span class="nav-text">组合使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-autoprefixer"><span class="nav-number">10.</span> <span class="nav-text">gulp-autoprefixer</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件功能描述-7"><span class="nav-number">10.1.</span> <span class="nav-text">插件功能描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装-6"><span class="nav-number">10.2.</span> <span class="nav-text">插件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法-7"><span class="nav-number">10.3.</span> <span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参数-3"><span class="nav-number">10.3.1.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用参数"><span class="nav-number">10.3.2.</span> <span class="nav-text">常用参数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-sourcemaps"><span class="nav-number">11.</span> <span class="nav-text">gulp-sourcemaps</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件功能描述-8"><span class="nav-number">11.1.</span> <span class="nav-text">插件功能描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件安装-7"><span class="nav-number">11.2.</span> <span class="nav-text">插件安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法-8"><span class="nav-number">11.3.</span> <span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-rev-append"><span class="nav-number">12.</span> <span class="nav-text">gulp-rev-append</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装gulp-rev-append"><span class="nav-number">12.1.</span> <span class="nav-text">安装gulp-rev-append</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置html页面引用"><span class="nav-number">12.2.</span> <span class="nav-text">配置html页面引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置gulpfile-js"><span class="nav-number">12.3.</span> <span class="nav-text">配置gulpfile.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行任务"><span class="nav-number">12.4.</span> <span class="nav-text">执行任务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-minify-css"><span class="nav-number">13.</span> <span class="nav-text">gulp-minify-css</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#本地安装gulp-minify-css"><span class="nav-number">13.1.</span> <span class="nav-text">本地安装gulp-minify-css</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装：命令提示符执行"><span class="nav-number">13.2.</span> <span class="nav-text">安装：命令提示符执行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置gulpfile-js-1"><span class="nav-number">13.3.</span> <span class="nav-text">配置gulpfile.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行任务-1"><span class="nav-number">13.4.</span> <span class="nav-text">执行任务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp-uglify"><span class="nav-number">14.</span> <span class="nav-text">gulp-uglify</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装gulp-uglify"><span class="nav-number">14.1.</span> <span class="nav-text">安装gulp-uglify</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置gulpfile-js-2"><span class="nav-number">14.2.</span> <span class="nav-text">配置gulpfile.js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本使用"><span class="nav-number">14.2.1.</span> <span class="nav-text">基本使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压缩多个js文件"><span class="nav-number">14.2.2.</span> <span class="nav-text">压缩多个js文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#匹配符“-”，“”，“-”，“-”-1"><span class="nav-number">14.2.3.</span> <span class="nav-text">匹配符“!”，“”，“*”，“{}”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定变量名不混淆改变"><span class="nav-number">14.2.4.</span> <span class="nav-text">指定变量名不混淆改变</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gulp-uglify其他参数-具体参看"><span class="nav-number">14.2.5.</span> <span class="nav-text">gulp-uglify其他参数 具体参看</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行任务-2"><span class="nav-number">14.3.</span> <span class="nav-text">执行任务</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文有任何错误，或有任何疑问，欢迎留言说明。"><span class="nav-number">15.</span> <span class="nav-text">本文有任何错误，或有任何疑问，欢迎留言说明。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference-links"><span class="nav-number">16.</span> <span class="nav-text">Reference links</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2009 &mdash; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">opensmarty</span>
+  &nbsp;&nbsp;
+  <a href="https://tongji.baidu.com/web/welcome/ico?s=f484f384e1bc0a57e69f1c25b86fe1d5" target="_blank">百度统计</a>
+
+  
+
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <span>Hosted by <a href="https://github.com" style="font-weight: bold">GitHub</a></span>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

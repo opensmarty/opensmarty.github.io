@@ -5,7 +5,7 @@
     
   <url>
     <loc>https://opensmarty.github.io/2017/08/21/%E9%A1%B9%E7%9B%AE%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E8%AE%BE%E8%AE%A1/</loc>
-    <lastmod>2017-08-21T17:03:59.780Z</lastmod>
+    <lastmod>2017-08-24T10:48:45.474Z</lastmod>
     <data>
         <display>
         <title>项目错误代码设计</title>
@@ -28,18 +28,33 @@
 
     
   <url>
+    <loc>https://opensmarty.github.io/2017/08/24/%E8%AF%A6%E8%A7%A3%E5%85%A5%E9%97%A8gulp/</loc>
+    <lastmod>2017-08-24T10:28:25.933Z</lastmod>
+    <data>
+        <display>
+        <title>详解入门gulp</title>
+        <pubTime>2017-08-24T10:27:21.000Z</pubTime>
+        
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://opensmarty.github.io/2017/08/18/helloworld/</loc>
-    <lastmod>2017-08-20T12:29:37.546Z</lastmod>
+    <lastmod>2017-08-24T10:25:07.420Z</lastmod>
     <data>
         <display>
         <title>How do you make blog for yourself ?</title>
         <pubTime>2017-08-18T08:12:00.000Z</pubTime>
         
+        <tag>Install</tag>
+         
         <tag>Hexo</tag>
          
         <tag>Next</tag>
-         
-        <tag>HelloWorld</tag>
          
          
            
@@ -49,8 +64,59 @@
              
               <breadCrumb title="javascript" url="https://opensmarty.github.io/categories/Python/javascript/"/>
           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://opensmarty.github.io/2017/08/23/gulp/</loc>
+    <lastmod>2017-08-24T10:23:43.651Z</lastmod>
+    <data>
+        <display>
+        <title>gulp</title>
+        <pubTime>2017-08-23T07:54:21.000Z</pubTime>
+        
+        <tag>gulp</tag>
+         
+        <tag>自动化</tag>
+         
+        <tag>构建工具</tag>
+         
+        <tag>Install</tag>
+         
+         
+           
              
-              <breadCrumb title="Install" url="https://opensmarty.github.io/categories/Python/javascript/Install/"/>
+              <breadCrumb title="工作流" url="https://opensmarty.github.io/categories/%E5%B7%A5%E4%BD%9C%E6%B5%81/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://opensmarty.github.io/2017/08/24/glup%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/</loc>
+    <lastmod>2017-08-24T10:23:20.899Z</lastmod>
+    <data>
+        <display>
+        <title>glup入门教程</title>
+        <pubTime>2017-08-24T09:26:57.000Z</pubTime>
+        
+        <tag>gulp</tag>
+         
+        <tag>自动化</tag>
+         
+        <tag>构建工具</tag>
+         
+        <tag>教程</tag>
+         
+        <tag>Install</tag>
+         
+         
+           
+             
+              <breadCrumb title="工作流" url="https://opensmarty.github.io/categories/%E5%B7%A5%E4%BD%9C%E6%B5%81/"/>
           
         </display>
     </data>

@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="开放思维, opensmarty, opensmarty.github.com" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="科技，让生活更美好" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="简介： gulp是前端开发过程中对代码进行构建的工具，是自动化项目的构建利器；她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；使用她，我们不仅可以很愉快的编写代码，而且大大提高我们的工作效率。 gulp是基于Nodejs的自动任务运行器， 她能自动化地完成 javascript/coffee/sass/less/html/image/css 等文件的的测试、检">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详解入门gulp">
+<meta property="og:url" content="https://opensmarty.github.io/2017/08/24/详解入门gulp/index.html">
+<meta property="og:site_name" content="科技，让生活更美好">
+<meta property="og:description" content="简介： gulp是前端开发过程中对代码进行构建的工具，是自动化项目的构建利器；她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；使用她，我们不仅可以很愉快的编写代码，而且大大提高我们的工作效率。 gulp是基于Nodejs的自动任务运行器， 她能自动化地完成 javascript/coffee/sass/less/html/image/css 等文件的的测试、检">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-24T10:28:25.933Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="详解入门gulp">
+<meta name="twitter:description" content="简介： gulp是前端开发过程中对代码进行构建的工具，是自动化项目的构建利器；她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；使用她，我们不仅可以很愉快的编写代码，而且大大提高我们的工作效率。 gulp是基于Nodejs的自动任务运行器， 她能自动化地完成 javascript/coffee/sass/less/html/image/css 等文件的的测试、检">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://opensmarty.github.io/2017/08/24/详解入门gulp/"/>
+
+
+
+
+
+  <title>详解入门gulp | 科技，让生活更美好</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f484f384e1bc0a57e69f1c25b86fe1d5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">科技，让生活更美好</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">创新，努力，坚持</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://opensmarty.github.io/2017/08/24/详解入门gulp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="opensmarty">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="科技，让生活更美好">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">详解入门gulp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-24T18:27:21+08:00">
+                2017-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>简介：</p>
+<p>gulp是前端开发过程中对代码进行构建的工具，是自动化项目的构建利器；她不仅能对网站资源进行优化，而且在开发过程中很多重复的任务能够使用正确的工具自动完成；使用她，我们不仅可以很愉快的编写代码，而且大大提高我们的工作效率。</p>
+<p>gulp是基于Nodejs的自动任务运行器， 她能自动化地完成 javascript/coffee/sass/less/html/image/css 等文件的的测试、检查、合并、压缩、格式化、浏览器自动刷新、部署文件生成，并监听文件在改动后重复指定的这些步骤。在实现上，她借鉴了Unix操作系统的管道（pipe）思想，前一级的输出，直接变成后一级的输入，使得在操作上非常简单。通过本文，我们将学习如何使用Gulp来改变开发流程，从而使开发更加快速高效。</p>
+<p>gulp 和 grunt 非常类似，但相比于 grunt 的频繁 IO 操作，gulp 的流操作，能更快地更便捷地完成构建工作。</p>
+<p>本示例以gulp-less为例（将less编译成css的gulp插件）展示gulp的常规用法，只要我们学会使用一个gulp插件后，其他插件就差看看其帮助文档了。让我们一起来学习gulp吧！ ^_^</p>
+<pre><code>gulp常用地址：
+gulp官方网址：&lt;http://gulpjs.com&gt;
+gulp插件地址：&lt;http://gulpjs.com/plugins&gt;
+gulp 官方API：&lt;https://github.com/gulpjs/gulp/blob/master/docs/API.md&gt;
+gulp 中文API：&lt;http://www.ydcss.com/archives/424&gt;
+</code></pre><p>在学习前，先谈谈大致使用gulp的步骤，给读者以初步的认识。首先当然是安装nodejs，通过nodejs的npm全局安装和项目安装gulp，其次在项目里安装所需要的gulp插件，然后新建gulp的配置文件gulpfile.js并写好配置信息（定义gulp任务），最后通过命令提示符运行gulp任务即可。</p>
+<p>安装nodejs -&gt; 全局安装gulp -&gt; 项目安装gulp以及gulp插件 -&gt; 配置gulpfile.js -&gt; 运行任务</p>
+<h1 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h1><h2 id="说明：gulp是基于nodejs，理所当然需要安装nodejs；"><a href="#说明：gulp是基于nodejs，理所当然需要安装nodejs；" class="headerlink" title="说明：gulp是基于nodejs，理所当然需要安装nodejs；"></a>说明：gulp是基于nodejs，理所当然需要安装nodejs；</h2><h2 id="安装：打开nodejs官网，点击硕大的绿色Download按钮，它会根据系统信息选择对应版本（-msi文件）。然后像安装QQ一样安装它就可以了（安装路径随意）。"><a href="#安装：打开nodejs官网，点击硕大的绿色Download按钮，它会根据系统信息选择对应版本（-msi文件）。然后像安装QQ一样安装它就可以了（安装路径随意）。" class="headerlink" title="安装：打开nodejs官网，点击硕大的绿色Download按钮，它会根据系统信息选择对应版本（.msi文件）。然后像安装QQ一样安装它就可以了（安装路径随意）。"></a>安装：打开nodejs官网，点击硕大的绿色Download按钮，它会根据系统信息选择对应版本（.msi文件）。然后像安装QQ一样安装它就可以了（安装路径随意）。</h2><h1 id="使用命令行（如果你熟悉命令行，可以直接跳到第3步）"><a href="#使用命令行（如果你熟悉命令行，可以直接跳到第3步）" class="headerlink" title="使用命令行（如果你熟悉命令行，可以直接跳到第3步）"></a>使用命令行（如果你熟悉命令行，可以直接跳到第3步）</h1><h2 id="说明：什么是命令行？命令行在OSX是终端（Terminal），在windows是命令提示符（Command-Prompt）；"><a href="#说明：什么是命令行？命令行在OSX是终端（Terminal），在windows是命令提示符（Command-Prompt）；" class="headerlink" title="说明：什么是命令行？命令行在OSX是终端（Terminal），在windows是命令提示符（Command Prompt）；"></a>说明：什么是命令行？命令行在OSX是终端（Terminal），在windows是命令提示符（Command Prompt）；</h2><h2 id="注：之后操作都是在windows系统下；"><a href="#注：之后操作都是在windows系统下；" class="headerlink" title="注：之后操作都是在windows系统下；"></a>注：之后操作都是在windows系统下；</h2><h2 id="简单介绍gulp在使用过程中常用命令，打开命令提示符执行下列命令（打开方式：window-r-输入cmd回车）："><a href="#简单介绍gulp在使用过程中常用命令，打开命令提示符执行下列命令（打开方式：window-r-输入cmd回车）：" class="headerlink" title="简单介绍gulp在使用过程中常用命令，打开命令提示符执行下列命令（打开方式：window + r 输入cmd回车）："></a>简单介绍gulp在使用过程中常用命令，打开命令提示符执行下列命令（打开方式：window + r 输入cmd回车）：</h2><p>node -v查看安装的nodejs版本，出现版本号，说明刚刚已正确安装nodejs。PS：未能出现版本号，请尝试注销电脑重试；</p>
+<p>npm -v查看npm的版本号，npm是在安装nodejs时一同安装的nodejs包管理器，那它有什么用呢？稍后解释；</p>
+<p>cd定位到目录，用法：cd + 路径 ；</p>
+<p>dir列出文件列表；</p>
+<p>cls清空命令提示符窗口内容。</p>
+<h1 id="npm介绍"><a href="#npm介绍" class="headerlink" title="npm介绍"></a>npm介绍</h1><h2 id="说明：npm（node-package-manager）nodejs的包管理器，用于node插件管理（包括安装、卸载、管理依赖等）；"><a href="#说明：npm（node-package-manager）nodejs的包管理器，用于node插件管理（包括安装、卸载、管理依赖等）；" class="headerlink" title="说明：npm（node package manager）nodejs的包管理器，用于node插件管理（包括安装、卸载、管理依赖等）；"></a>说明：npm（node package manager）nodejs的包管理器，用于node插件管理（包括安装、卸载、管理依赖等）；</h2><h2 id="使用npm安装插件：命令提示符执行npm-install-g-–save-dev-；"><a href="#使用npm安装插件：命令提示符执行npm-install-g-–save-dev-；" class="headerlink" title="使用npm安装插件：命令提示符执行npm install  [-g] [–save-dev]；"></a>使用npm安装插件：命令提示符执行npm install <name> [-g] [–save-dev]；</name></h2><h3 id="：node插件名称。例：npm-install-gulp-less-–save-dev"><a href="#：node插件名称。例：npm-install-gulp-less-–save-dev" class="headerlink" title="：node插件名称。例：npm install gulp-less –save-dev"></a><name>：node插件名称。例：npm install gulp-less –save-dev</name></h3><h3 id="g：全局安装。将会安装在C-Users-Administrator-AppData-Roaming-npm，并且写入系统环境变量；-非全局安装：将会安装在当前定位目录；-全局安装可以通过命令行在任何地方调用它，本地安装将安装在定位目录的node-modules文件夹下，通过require-调用；"><a href="#g：全局安装。将会安装在C-Users-Administrator-AppData-Roaming-npm，并且写入系统环境变量；-非全局安装：将会安装在当前定位目录；-全局安装可以通过命令行在任何地方调用它，本地安装将安装在定位目录的node-modules文件夹下，通过require-调用；" class="headerlink" title="-g：全局安装。将会安装在C:\Users\Administrator\AppData\Roaming\npm，并且写入系统环境变量；  非全局安装：将会安装在当前定位目录；  全局安装可以通过命令行在任何地方调用它，本地安装将安装在定位目录的node_modules文件夹下，通过require()调用；"></a>-g：全局安装。将会安装在C:\Users\Administrator\AppData\Roaming\npm，并且写入系统环境变量；  非全局安装：将会安装在当前定位目录；  全局安装可以通过命令行在任何地方调用它，本地安装将安装在定位目录的node_modules文件夹下，通过require()调用；</h3><h3 id="–save：将保存配置信息至package-json（package-json是nodejs项目配置文件）；"><a href="#–save：将保存配置信息至package-json（package-json是nodejs项目配置文件）；" class="headerlink" title="–save：将保存配置信息至package.json（package.json是nodejs项目配置文件）；"></a>–save：将保存配置信息至package.json（package.json是nodejs项目配置文件）；</h3><h3 id="dev：保存至package-json的devDependencies节点，不指定-dev将保存至dependencies节点；一般保存在dependencies的像这些express-ejs-body-parser等等。"><a href="#dev：保存至package-json的devDependencies节点，不指定-dev将保存至dependencies节点；一般保存在dependencies的像这些express-ejs-body-parser等等。" class="headerlink" title="-dev：保存至package.json的devDependencies节点，不指定-dev将保存至dependencies节点；一般保存在dependencies的像这些express/ejs/body-parser等等。"></a>-dev：保存至package.json的devDependencies节点，不指定-dev将保存至dependencies节点；一般保存在dependencies的像这些express/ejs/body-parser等等。</h3><h3 id="为什么要保存至package-json？因为node插件包相对来说非常庞大，所以不加入版本管理，将配置信息写入package-json并将其加入版本管理，其他开发者对应下载即可（命令提示符执行npm-install，则会根据package-json下载所有需要的包，npm-install-–production只下载dependencies节点的包）。"><a href="#为什么要保存至package-json？因为node插件包相对来说非常庞大，所以不加入版本管理，将配置信息写入package-json并将其加入版本管理，其他开发者对应下载即可（命令提示符执行npm-install，则会根据package-json下载所有需要的包，npm-install-–production只下载dependencies节点的包）。" class="headerlink" title="为什么要保存至package.json？因为node插件包相对来说非常庞大，所以不加入版本管理，将配置信息写入package.json并将其加入版本管理，其他开发者对应下载即可（命令提示符执行npm install，则会根据package.json下载所有需要的包，npm install –production只下载dependencies节点的包）。"></a>为什么要保存至package.json？因为node插件包相对来说非常庞大，所以不加入版本管理，将配置信息写入package.json并将其加入版本管理，其他开发者对应下载即可（命令提示符执行npm install，则会根据package.json下载所有需要的包，npm install –production只下载dependencies节点的包）。</h3><h2 id="使用npm卸载插件：npm-uninstall-g-–save-dev-PS：不要直接删除本地插件包"><a href="#使用npm卸载插件：npm-uninstall-g-–save-dev-PS：不要直接删除本地插件包" class="headerlink" title="使用npm卸载插件：npm uninstall  [-g] [–save-dev]  PS：不要直接删除本地插件包"></a>使用npm卸载插件：npm uninstall <name> [-g] [–save-dev]  PS：不要直接删除本地插件包</name></h2><h2 id="删除全部插件：npm-uninstall-gulp-less-gulp-uglify-gulp-concat-……-太麻烦"><a href="#删除全部插件：npm-uninstall-gulp-less-gulp-uglify-gulp-concat-……-太麻烦" class="headerlink" title="删除全部插件：npm uninstall gulp-less gulp-uglify gulp-concat ……???太麻烦"></a>删除全部插件：npm uninstall gulp-less gulp-uglify gulp-concat ……???太麻烦</h2><h2 id="借助rimraf：npm-install-rimraf-g-用法：rimraf-node-modules"><a href="#借助rimraf：npm-install-rimraf-g-用法：rimraf-node-modules" class="headerlink" title="借助rimraf：npm install rimraf -g 用法：rimraf node_modules"></a>借助rimraf：npm install rimraf -g 用法：rimraf node_modules</h2><h2 id="使用npm更新插件：npm-update-g-–save-dev"><a href="#使用npm更新插件：npm-update-g-–save-dev" class="headerlink" title="使用npm更新插件：npm update  [-g] [–save-dev]"></a>使用npm更新插件：npm update <name> [-g] [–save-dev]</name></h2><h3 id="更新全部插件：npm-update-–save-dev"><a href="#更新全部插件：npm-update-–save-dev" class="headerlink" title="更新全部插件：npm update [–save-dev]"></a>更新全部插件：npm update [–save-dev]</h3><h3 id="查看npm帮助：npm-help"><a href="#查看npm帮助：npm-help" class="headerlink" title="查看npm帮助：npm help"></a>查看npm帮助：npm help</h3><h2 id="当前目录已安装插件：npm-list"><a href="#当前目录已安装插件：npm-list" class="headerlink" title="当前目录已安装插件：npm list"></a>当前目录已安装插件：npm list</h2><p>PS：npm安装插件过程：从<a href="http://registry.npmjs.org下载对应的插件包（该网站服务器位于国外，所以经常下载缓慢或出现异常），解决办法往下看↓↓↓↓↓↓。" target="_blank" rel="external">http://registry.npmjs.org下载对应的插件包（该网站服务器位于国外，所以经常下载缓慢或出现异常），解决办法往下看↓↓↓↓↓↓。</a></p>
+<h1 id="选装cnpm"><a href="#选装cnpm" class="headerlink" title="选装cnpm"></a>选装cnpm</h1><h2 id="说明：因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。32个！来自官网：“这是一个完整-npmjs-org-镜像，你可以用此代替官方版本-只读-，同步频率目前为-10分钟-一次以保证尽量与官方服务同步。”；"><a href="#说明：因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。32个！来自官网：“这是一个完整-npmjs-org-镜像，你可以用此代替官方版本-只读-，同步频率目前为-10分钟-一次以保证尽量与官方服务同步。”；" class="headerlink" title="说明：因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。32个！来自官网：“这是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。”；"></a>说明：因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。32个！来自官网：“这是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。”；</h2><h2 id="官方网址：http-npm-taobao-org；"><a href="#官方网址：http-npm-taobao-org；" class="headerlink" title="官方网址：http://npm.taobao.org；"></a>官方网址：<a href="http://npm.taobao.org" target="_blank" rel="external">http://npm.taobao.org</a>；</h2><h2 id="安装：命令提示符执行npm-install-cnpm-g-–registry-https-registry-npm-taobao-org；-注意：安装完后最好查看其版本号cnpm-v或关闭命令提示符重新打开，安装完直接使用有可能会出现错误；"><a href="#安装：命令提示符执行npm-install-cnpm-g-–registry-https-registry-npm-taobao-org；-注意：安装完后最好查看其版本号cnpm-v或关闭命令提示符重新打开，安装完直接使用有可能会出现错误；" class="headerlink" title="安装：命令提示符执行npm install cnpm -g –registry=https://registry.npm.taobao.org；  注意：安装完后最好查看其版本号cnpm -v或关闭命令提示符重新打开，安装完直接使用有可能会出现错误；"></a>安装：命令提示符执行npm install cnpm -g –registry=<a href="https://registry.npm.taobao.org；" target="_blank" rel="external">https://registry.npm.taobao.org；</a>  注意：安装完后最好查看其版本号cnpm -v或关闭命令提示符重新打开，安装完直接使用有可能会出现错误；</h2><p>注：cnpm跟npm用法完全一致，只是在执行命令时将npm改为cnpm（以下操作将以cnpm代替npm）。</p>
+<h1 id="全局安装gulp"><a href="#全局安装gulp" class="headerlink" title="全局安装gulp"></a>全局安装gulp</h1><h2 id="说明：全局安装gulp目的是为了通过她执行gulp任务；"><a href="#说明：全局安装gulp目的是为了通过她执行gulp任务；" class="headerlink" title="说明：全局安装gulp目的是为了通过她执行gulp任务；"></a>说明：全局安装gulp目的是为了通过她执行gulp任务；</h2><h2 id="安装：命令提示符执行cnpm-install-gulp-g；"><a href="#安装：命令提示符执行cnpm-install-gulp-g；" class="headerlink" title="安装：命令提示符执行cnpm install gulp -g；"></a>安装：命令提示符执行cnpm install gulp -g；</h2><h2 id="查看是否正确安装：命令提示符执行gulp-v，出现版本号即为正确安装。"><a href="#查看是否正确安装：命令提示符执行gulp-v，出现版本号即为正确安装。" class="headerlink" title="查看是否正确安装：命令提示符执行gulp -v，出现版本号即为正确安装。"></a>查看是否正确安装：命令提示符执行gulp -v，出现版本号即为正确安装。</h2><h1 id="新建package-json文件"><a href="#新建package-json文件" class="headerlink" title="新建package.json文件"></a>新建package.json文件</h1><h2 id="说明：package-json是基于nodejs项目必不可少的配置文件，它是存放在项目根目录的普通json文件；"><a href="#说明：package-json是基于nodejs项目必不可少的配置文件，它是存放在项目根目录的普通json文件；" class="headerlink" title="说明：package.json是基于nodejs项目必不可少的配置文件，它是存放在项目根目录的普通json文件；"></a>说明：package.json是基于nodejs项目必不可少的配置文件，它是存放在项目根目录的普通json文件；</h2><h2 id="它是这样一个json文件（注意：json文件内是不能写注释的，复制下列内容请删除注释）："><a href="#它是这样一个json文件（注意：json文件内是不能写注释的，复制下列内容请删除注释）：" class="headerlink" title="它是这样一个json文件（注意：json文件内是不能写注释的，复制下列内容请删除注释）："></a>它是这样一个json文件（注意：json文件内是不能写注释的，复制下列内容请删除注释）：</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "name": "test",   //项目名称（必须）</div><div class="line">  "version": "1.0.0",   //项目版本（必须）</div><div class="line">  "description": "This is for study gulp project !",   //项目描述（必须）</div><div class="line">  "homepage": "",   //项目主页</div><div class="line">  "repository": &#123;    //项目资源库</div><div class="line">    "type": "git",</div><div class="line">    "url": "https://git.oschina.net/xxxx"</div><div class="line">  &#125;,</div><div class="line">  "author": &#123;    //项目作者信息</div><div class="line">    "name": "surging",</div><div class="line">    "email": "surging2@qq.com"</div><div class="line">  &#125;,</div><div class="line">  "license": "ISC",    //项目许可协议</div><div class="line">  "devDependencies": &#123;    //项目依赖的插件</div><div class="line">    "gulp": "^3.8.11",</div><div class="line">    "gulp-less": "^3.0.0"</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="当然我们可以手动新建这个配置文件，但是作为一名有志青年，我们应该使用更为效率的方法：命令提示符执行cnpm-init"><a href="#当然我们可以手动新建这个配置文件，但是作为一名有志青年，我们应该使用更为效率的方法：命令提示符执行cnpm-init" class="headerlink" title="当然我们可以手动新建这个配置文件，但是作为一名有志青年，我们应该使用更为效率的方法：命令提示符执行cnpm init"></a>当然我们可以手动新建这个配置文件，但是作为一名有志青年，我们应该使用更为效率的方法：命令提示符执行cnpm init</h2><h2 id="查看package-json帮助文档，命令提示符执行cnpm-help-package-json"><a href="#查看package-json帮助文档，命令提示符执行cnpm-help-package-json" class="headerlink" title="查看package.json帮助文档，命令提示符执行cnpm help package.json"></a>查看package.json帮助文档，命令提示符执行cnpm help package.json</h2><p>特别注意：package.json是一个普通json文件，所以不能添加任何注释。[参看] (<a href="http://www.zhihu.com/question/23004511" target="_blank" rel="external">http://www.zhihu.com/question/23004511</a>)</p>
+<h1 id="本地安装gulp插件"><a href="#本地安装gulp插件" class="headerlink" title="本地安装gulp插件"></a>本地安装gulp插件</h1><h2 id="安装：定位目录命令后提示符执行cnpm-install-–save-dev；"><a href="#安装：定位目录命令后提示符执行cnpm-install-–save-dev；" class="headerlink" title="安装：定位目录命令后提示符执行cnpm install –save-dev；"></a>安装：定位目录命令后提示符执行cnpm install –save-dev；</h2><h2 id="本示例以gulp-less为例（编译less文件），命令提示符执行cnpm-install-gulp-less-–save-dev；"><a href="#本示例以gulp-less为例（编译less文件），命令提示符执行cnpm-install-gulp-less-–save-dev；" class="headerlink" title="本示例以gulp-less为例（编译less文件），命令提示符执行cnpm install gulp-less –save-dev；"></a>本示例以gulp-less为例（编译less文件），命令提示符执行cnpm install gulp-less –save-dev；</h2><h2 id="将会安装在node-modules的gulp-less目录下，该目录下有一个gulp-less的使用帮助文档README-md；"><a href="#将会安装在node-modules的gulp-less目录下，该目录下有一个gulp-less的使用帮助文档README-md；" class="headerlink" title="将会安装在node_modules的gulp-less目录下，该目录下有一个gulp-less的使用帮助文档README.md；"></a>将会安装在node_modules的gulp-less目录下，该目录下有一个gulp-less的使用帮助文档README.md；</h2><h2 id="为了能正常使用，我们还得本地安装gulp：cnpm-install-gulp-–save-dev；"><a href="#为了能正常使用，我们还得本地安装gulp：cnpm-install-gulp-–save-dev；" class="headerlink" title="为了能正常使用，我们还得本地安装gulp：cnpm install gulp –save-dev；"></a>为了能正常使用，我们还得本地安装gulp：cnpm install gulp –save-dev；</h2><h2 id="细心的你可能会发现，我们全局安装了gulp，项目也安装了gulp，全局安装gulp是为了执行gulp任务，本地安装gulp则是为了调用gulp插件的功能。"><a href="#细心的你可能会发现，我们全局安装了gulp，项目也安装了gulp，全局安装gulp是为了执行gulp任务，本地安装gulp则是为了调用gulp插件的功能。" class="headerlink" title="细心的你可能会发现，我们全局安装了gulp，项目也安装了gulp，全局安装gulp是为了执行gulp任务，本地安装gulp则是为了调用gulp插件的功能。"></a>细心的你可能会发现，我们全局安装了gulp，项目也安装了gulp，全局安装gulp是为了执行gulp任务，本地安装gulp则是为了调用gulp插件的功能。</h2><h1 id="新建gulpfile-js文件（重要）"><a href="#新建gulpfile-js文件（重要）" class="headerlink" title="新建gulpfile.js文件（重要）"></a>新建gulpfile.js文件（重要）</h1><h2 id="说明：gulpfile-js是gulp项目的配置文件，是位于项目根目录的普通js文件（其实将gulpfile-js放入其他文件夹下亦可）。"><a href="#说明：gulpfile-js是gulp项目的配置文件，是位于项目根目录的普通js文件（其实将gulpfile-js放入其他文件夹下亦可）。" class="headerlink" title="说明：gulpfile.js是gulp项目的配置文件，是位于项目根目录的普通js文件（其实将gulpfile.js放入其他文件夹下亦可）。"></a>说明：gulpfile.js是gulp项目的配置文件，是位于项目根目录的普通js文件（其实将gulpfile.js放入其他文件夹下亦可）。</h2><h2 id="它大概是这样一个js文件（更多插件配置请查看这里）："><a href="#它大概是这样一个js文件（更多插件配置请查看这里）：" class="headerlink" title="它大概是这样一个js文件（更多插件配置请查看这里）："></a>它大概是这样一个js文件（更多插件配置请查看这里）：</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//导入工具包 require('node_modules里对应模块')</span></div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>), <span class="comment">//本地安装gulp所用到的地方</span></div><div class="line">    less = <span class="built_in">require</span>(<span class="string">'gulp-less'</span>);</div><div class="line"></div><div class="line"><span class="comment">//定义一个testLess任务（自定义任务名称）</span></div><div class="line">gulp.task(<span class="string">'testLess'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/less/index.less'</span>) <span class="comment">//该任务针对的文件</span></div><div class="line">        .pipe(less()) <span class="comment">//该任务调用的模块</span></div><div class="line">        .pipe(gulp.dest(<span class="string">'src/css'</span>)); <span class="comment">//将会在src/css下生成index.css</span></div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'default'</span>,[<span class="string">'testLess'</span>, <span class="string">'elseTask'</span>]); <span class="comment">//定义默认任务 elseTask为其他任务，该示例没有定义elseTask任务</span></div><div class="line"></div><div class="line"><span class="comment">//gulp.task(name[, deps], fn) 定义任务  name：任务名称 deps：依赖任务名称 fn：回调函数</span></div><div class="line"><span class="comment">//gulp.src(globs[, options]) 执行任务处理的文件  globs：处理的文件路径(字符串或者字符串数组)</span></div><div class="line"><span class="comment">//gulp.dest(path[, options]) 处理完后文件生成路径</span></div></pre></td></tr></table></figure>
+<h2 id="该示例文件请下载查看"><a href="#该示例文件请下载查看" class="headerlink" title="该示例文件请下载查看"></a>该示例文件请下载查看</h2><h1 id="运行gulp"><a href="#运行gulp" class="headerlink" title="运行gulp"></a>运行gulp</h1><h2 id="说明：命令提示符执行gulp-任务名称；"><a href="#说明：命令提示符执行gulp-任务名称；" class="headerlink" title="说明：命令提示符执行gulp 任务名称；"></a>说明：命令提示符执行gulp 任务名称；</h2><h2 id="编译less：命令提示符执行gulp-testLess；"><a href="#编译less：命令提示符执行gulp-testLess；" class="headerlink" title="编译less：命令提示符执行gulp testLess；"></a>编译less：命令提示符执行gulp testLess；</h2><h2 id="当执行gulp-default或gulp将会调用default任务里的所有任务-‘testLess’-’elseTask’-。"><a href="#当执行gulp-default或gulp将会调用default任务里的所有任务-‘testLess’-’elseTask’-。" class="headerlink" title="当执行gulp default或gulp将会调用default任务里的所有任务[‘testLess’,’elseTask’]。"></a>当执行gulp default或gulp将会调用default任务里的所有任务[‘testLess’,’elseTask’]。</h2><h1 id="使用webstorm运行gulp任务"><a href="#使用webstorm运行gulp任务" class="headerlink" title="使用webstorm运行gulp任务"></a>使用webstorm运行gulp任务</h1><h2 id="说明：使用webstorm可视化运行gulp任务；"><a href="#说明：使用webstorm可视化运行gulp任务；" class="headerlink" title="说明：使用webstorm可视化运行gulp任务；"></a>说明：使用webstorm可视化运行gulp任务；</h2><h2 id="使用方法：将项目导入webstorm，右键gulpfile-js-选择”Show-Gulp-Tasks”打开Gulp窗口，若出现”No-task-found”，选择右键”Reload-tasks”，双击运行即可。"><a href="#使用方法：将项目导入webstorm，右键gulpfile-js-选择”Show-Gulp-Tasks”打开Gulp窗口，若出现”No-task-found”，选择右键”Reload-tasks”，双击运行即可。" class="headerlink" title="使用方法：将项目导入webstorm，右键gulpfile.js 选择”Show Gulp Tasks”打开Gulp窗口，若出现”No task found”，选择右键”Reload tasks”，双击运行即可。"></a>使用方法：将项目导入webstorm，右键gulpfile.js 选择”Show Gulp Tasks”打开Gulp窗口，若出现”No task found”，选择右键”Reload tasks”，双击运行即可。</h2><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="安装nodejs；"><a href="#安装nodejs；" class="headerlink" title="安装nodejs；"></a>安装nodejs；</h2><h2 id="新建package-json文件；"><a href="#新建package-json文件；" class="headerlink" title="新建package.json文件；"></a>新建package.json文件；</h2><h2 id="全局和本地安装gulp；"><a href="#全局和本地安装gulp；" class="headerlink" title="全局和本地安装gulp；"></a>全局和本地安装gulp；</h2><h2 id="安装gulp插件；"><a href="#安装gulp插件；" class="headerlink" title="安装gulp插件；"></a>安装gulp插件；</h2><h2 id="新建gulpfile-js文件；"><a href="#新建gulpfile-js文件；" class="headerlink" title="新建gulpfile.js文件；"></a>新建gulpfile.js文件；</h2><h2 id="通过命令提示符运行gulp任务。"><a href="#通过命令提示符运行gulp任务。" class="headerlink" title="通过命令提示符运行gulp任务。"></a>通过命令提示符运行gulp任务。</h2><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><h1 id="本文有任何错误，或有任何疑问，欢迎留言说明。"><a href="#本文有任何错误，或有任何疑问，欢迎留言说明。" class="headerlink" title="本文有任何错误，或有任何疑问，欢迎留言说明。"></a>本文有任何错误，或有任何疑问，欢迎留言说明。</h1><p><em>邮箱:</em> opensmarty@163.com<br><em>QQ:</em> 1327400982</p>
+<h1 id="Reference-links"><a href="#Reference-links" class="headerlink" title="Reference links"></a>Reference links</h1><p><a href="https://github.com/opensmarty/blog/soure/_post/详解入门gulp.md" target="_blank" rel="external">详解入门gulp</a><br><a href="https://github.com/opensmarty/blog/soure/_post/gulp入门教程.md" target="_blank" rel="external">gulp入门教程</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    <div style="text-align:center;color: #ccc;font-size:14px;">---------------- The End ----------------</div>
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    opensmarty
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://opensmarty.github.io/2017/08/24/详解入门gulp/" title="详解入门gulp">https://opensmarty.github.io/2017/08/24/详解入门gulp/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/24/glup入门教程/" rel="next" title="glup入门教程">
+                <i class="fa fa-chevron-left"></i> glup入门教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微薄</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/me.jpg"
+               alt="opensmarty" />
+          <p class="site-author-name" itemprop="name">opensmarty</p>
+           
+              <p class="site-description motion-element" itemprop="description">既有视野又有思维的米波g</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/opensmarty" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/opensmarty" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/opensmarty" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-thumbs-up"></i>
+                  
+                    
+                      Zhihu
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/opensmarty" target="_blank" title="Segmentfault">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                    
+                      Segmentfault
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com" title="Github" target="_blank">Github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://laravel.com/" title="Laravel" target="_blank">Laravel</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://540079673.blog.163.com" title="HappyClass" target="_blank">HappyClass</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装nodejs"><span class="nav-number">1.</span> <span class="nav-text">安装nodejs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明：gulp是基于nodejs，理所当然需要安装nodejs；"><span class="nav-number">1.1.</span> <span class="nav-text">说明：gulp是基于nodejs，理所当然需要安装nodejs；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装：打开nodejs官网，点击硕大的绿色Download按钮，它会根据系统信息选择对应版本（-msi文件）。然后像安装QQ一样安装它就可以了（安装路径随意）。"><span class="nav-number">1.2.</span> <span class="nav-text">安装：打开nodejs官网，点击硕大的绿色Download按钮，它会根据系统信息选择对应版本（.msi文件）。然后像安装QQ一样安装它就可以了（安装路径随意）。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用命令行（如果你熟悉命令行，可以直接跳到第3步）"><span class="nav-number">2.</span> <span class="nav-text">使用命令行（如果你熟悉命令行，可以直接跳到第3步）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明：什么是命令行？命令行在OSX是终端（Terminal），在windows是命令提示符（Command-Prompt）；"><span class="nav-number">2.1.</span> <span class="nav-text">说明：什么是命令行？命令行在OSX是终端（Terminal），在windows是命令提示符（Command Prompt）；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注：之后操作都是在windows系统下；"><span class="nav-number">2.2.</span> <span class="nav-text">注：之后操作都是在windows系统下；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单介绍gulp在使用过程中常用命令，打开命令提示符执行下列命令（打开方式：window-r-输入cmd回车）："><span class="nav-number">2.3.</span> <span class="nav-text">简单介绍gulp在使用过程中常用命令，打开命令提示符执行下列命令（打开方式：window + r 输入cmd回车）：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#npm介绍"><span class="nav-number">3.</span> <span class="nav-text">npm介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明：npm（node-package-manager）nodejs的包管理器，用于node插件管理（包括安装、卸载、管理依赖等）；"><span class="nav-number">3.1.</span> <span class="nav-text">说明：npm（node package manager）nodejs的包管理器，用于node插件管理（包括安装、卸载、管理依赖等）；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用npm安装插件：命令提示符执行npm-install-g-–save-dev-；"><span class="nav-number">3.2.</span> <span class="nav-text">使用npm安装插件：命令提示符执行npm install  [-g] [–save-dev]；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#：node插件名称。例：npm-install-gulp-less-–save-dev"><span class="nav-number">3.2.1.</span> <span class="nav-text">：node插件名称。例：npm install gulp-less –save-dev</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#g：全局安装。将会安装在C-Users-Administrator-AppData-Roaming-npm，并且写入系统环境变量；-非全局安装：将会安装在当前定位目录；-全局安装可以通过命令行在任何地方调用它，本地安装将安装在定位目录的node-modules文件夹下，通过require-调用；"><span class="nav-number">3.2.2.</span> <span class="nav-text">-g：全局安装。将会安装在C:\Users\Administrator\AppData\Roaming\npm，并且写入系统环境变量；  非全局安装：将会安装在当前定位目录；  全局安装可以通过命令行在任何地方调用它，本地安装将安装在定位目录的node_modules文件夹下，通过require()调用；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#–save：将保存配置信息至package-json（package-json是nodejs项目配置文件）；"><span class="nav-number">3.2.3.</span> <span class="nav-text">–save：将保存配置信息至package.json（package.json是nodejs项目配置文件）；</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dev：保存至package-json的devDependencies节点，不指定-dev将保存至dependencies节点；一般保存在dependencies的像这些express-ejs-body-parser等等。"><span class="nav-number">3.2.4.</span> <span class="nav-text">-dev：保存至package.json的devDependencies节点，不指定-dev将保存至dependencies节点；一般保存在dependencies的像这些express/ejs/body-parser等等。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要保存至package-json？因为node插件包相对来说非常庞大，所以不加入版本管理，将配置信息写入package-json并将其加入版本管理，其他开发者对应下载即可（命令提示符执行npm-install，则会根据package-json下载所有需要的包，npm-install-–production只下载dependencies节点的包）。"><span class="nav-number">3.2.5.</span> <span class="nav-text">为什么要保存至package.json？因为node插件包相对来说非常庞大，所以不加入版本管理，将配置信息写入package.json并将其加入版本管理，其他开发者对应下载即可（命令提示符执行npm install，则会根据package.json下载所有需要的包，npm install –production只下载dependencies节点的包）。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用npm卸载插件：npm-uninstall-g-–save-dev-PS：不要直接删除本地插件包"><span class="nav-number">3.3.</span> <span class="nav-text">使用npm卸载插件：npm uninstall  [-g] [–save-dev]  PS：不要直接删除本地插件包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除全部插件：npm-uninstall-gulp-less-gulp-uglify-gulp-concat-……-太麻烦"><span class="nav-number">3.4.</span> <span class="nav-text">删除全部插件：npm uninstall gulp-less gulp-uglify gulp-concat ……???太麻烦</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#借助rimraf：npm-install-rimraf-g-用法：rimraf-node-modules"><span class="nav-number">3.5.</span> <span class="nav-text">借助rimraf：npm install rimraf -g 用法：rimraf node_modules</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用npm更新插件：npm-update-g-–save-dev"><span class="nav-number">3.6.</span> <span class="nav-text">使用npm更新插件：npm update  [-g] [–save-dev]</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新全部插件：npm-update-–save-dev"><span class="nav-number">3.6.1.</span> <span class="nav-text">更新全部插件：npm update [–save-dev]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看npm帮助：npm-help"><span class="nav-number">3.6.2.</span> <span class="nav-text">查看npm帮助：npm help</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#当前目录已安装插件：npm-list"><span class="nav-number">3.7.</span> <span class="nav-text">当前目录已安装插件：npm list</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#选装cnpm"><span class="nav-number">4.</span> <span class="nav-text">选装cnpm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明：因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。32个！来自官网：“这是一个完整-npmjs-org-镜像，你可以用此代替官方版本-只读-，同步频率目前为-10分钟-一次以保证尽量与官方服务同步。”；"><span class="nav-number">4.1.</span> <span class="nav-text">说明：因为npm安装插件是从国外服务器下载，受网络影响大，可能出现异常，如果npm的服务器在中国就好了，所以我们乐于分享的淘宝团队干了这事。32个！来自官网：“这是一个完整 npmjs.org 镜像，你可以用此代替官方版本(只读)，同步频率目前为 10分钟 一次以保证尽量与官方服务同步。”；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方网址：http-npm-taobao-org；"><span class="nav-number">4.2.</span> <span class="nav-text">官方网址：http://npm.taobao.org；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装：命令提示符执行npm-install-cnpm-g-–registry-https-registry-npm-taobao-org；-注意：安装完后最好查看其版本号cnpm-v或关闭命令提示符重新打开，安装完直接使用有可能会出现错误；"><span class="nav-number">4.3.</span> <span class="nav-text">安装：命令提示符执行npm install cnpm -g –registry=https://registry.npm.taobao.org；  注意：安装完后最好查看其版本号cnpm -v或关闭命令提示符重新打开，安装完直接使用有可能会出现错误；</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全局安装gulp"><span class="nav-number">5.</span> <span class="nav-text">全局安装gulp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明：全局安装gulp目的是为了通过她执行gulp任务；"><span class="nav-number">5.1.</span> <span class="nav-text">说明：全局安装gulp目的是为了通过她执行gulp任务；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装：命令提示符执行cnpm-install-gulp-g；"><span class="nav-number">5.2.</span> <span class="nav-text">安装：命令提示符执行cnpm install gulp -g；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看是否正确安装：命令提示符执行gulp-v，出现版本号即为正确安装。"><span class="nav-number">5.3.</span> <span class="nav-text">查看是否正确安装：命令提示符执行gulp -v，出现版本号即为正确安装。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建package-json文件"><span class="nav-number">6.</span> <span class="nav-text">新建package.json文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明：package-json是基于nodejs项目必不可少的配置文件，它是存放在项目根目录的普通json文件；"><span class="nav-number">6.1.</span> <span class="nav-text">说明：package.json是基于nodejs项目必不可少的配置文件，它是存放在项目根目录的普通json文件；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#它是这样一个json文件（注意：json文件内是不能写注释的，复制下列内容请删除注释）："><span class="nav-number">6.2.</span> <span class="nav-text">它是这样一个json文件（注意：json文件内是不能写注释的，复制下列内容请删除注释）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#当然我们可以手动新建这个配置文件，但是作为一名有志青年，我们应该使用更为效率的方法：命令提示符执行cnpm-init"><span class="nav-number">6.3.</span> <span class="nav-text">当然我们可以手动新建这个配置文件，但是作为一名有志青年，我们应该使用更为效率的方法：命令提示符执行cnpm init</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看package-json帮助文档，命令提示符执行cnpm-help-package-json"><span class="nav-number">6.4.</span> <span class="nav-text">查看package.json帮助文档，命令提示符执行cnpm help package.json</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本地安装gulp插件"><span class="nav-number">7.</span> <span class="nav-text">本地安装gulp插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装：定位目录命令后提示符执行cnpm-install-–save-dev；"><span class="nav-number">7.1.</span> <span class="nav-text">安装：定位目录命令后提示符执行cnpm install –save-dev；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本示例以gulp-less为例（编译less文件），命令提示符执行cnpm-install-gulp-less-–save-dev；"><span class="nav-number">7.2.</span> <span class="nav-text">本示例以gulp-less为例（编译less文件），命令提示符执行cnpm install gulp-less –save-dev；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将会安装在node-modules的gulp-less目录下，该目录下有一个gulp-less的使用帮助文档README-md；"><span class="nav-number">7.3.</span> <span class="nav-text">将会安装在node_modules的gulp-less目录下，该目录下有一个gulp-less的使用帮助文档README.md；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为了能正常使用，我们还得本地安装gulp：cnpm-install-gulp-–save-dev；"><span class="nav-number">7.4.</span> <span class="nav-text">为了能正常使用，我们还得本地安装gulp：cnpm install gulp –save-dev；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#细心的你可能会发现，我们全局安装了gulp，项目也安装了gulp，全局安装gulp是为了执行gulp任务，本地安装gulp则是为了调用gulp插件的功能。"><span class="nav-number">7.5.</span> <span class="nav-text">细心的你可能会发现，我们全局安装了gulp，项目也安装了gulp，全局安装gulp是为了执行gulp任务，本地安装gulp则是为了调用gulp插件的功能。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建gulpfile-js文件（重要）"><span class="nav-number">8.</span> <span class="nav-text">新建gulpfile.js文件（重要）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明：gulpfile-js是gulp项目的配置文件，是位于项目根目录的普通js文件（其实将gulpfile-js放入其他文件夹下亦可）。"><span class="nav-number">8.1.</span> <span class="nav-text">说明：gulpfile.js是gulp项目的配置文件，是位于项目根目录的普通js文件（其实将gulpfile.js放入其他文件夹下亦可）。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#它大概是这样一个js文件（更多插件配置请查看这里）："><span class="nav-number">8.2.</span> <span class="nav-text">它大概是这样一个js文件（更多插件配置请查看这里）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#该示例文件请下载查看"><span class="nav-number">8.3.</span> <span class="nav-text">该示例文件请下载查看</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#运行gulp"><span class="nav-number">9.</span> <span class="nav-text">运行gulp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明：命令提示符执行gulp-任务名称；"><span class="nav-number">9.1.</span> <span class="nav-text">说明：命令提示符执行gulp 任务名称；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编译less：命令提示符执行gulp-testLess；"><span class="nav-number">9.2.</span> <span class="nav-text">编译less：命令提示符执行gulp testLess；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#当执行gulp-default或gulp将会调用default任务里的所有任务-‘testLess’-’elseTask’-。"><span class="nav-number">9.3.</span> <span class="nav-text">当执行gulp default或gulp将会调用default任务里的所有任务[‘testLess’,’elseTask’]。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用webstorm运行gulp任务"><span class="nav-number">10.</span> <span class="nav-text">使用webstorm运行gulp任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#说明：使用webstorm可视化运行gulp任务；"><span class="nav-number">10.1.</span> <span class="nav-text">说明：使用webstorm可视化运行gulp任务；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用方法：将项目导入webstorm，右键gulpfile-js-选择”Show-Gulp-Tasks”打开Gulp窗口，若出现”No-task-found”，选择右键”Reload-tasks”，双击运行即可。"><span class="nav-number">10.2.</span> <span class="nav-text">使用方法：将项目导入webstorm，右键gulpfile.js 选择”Show Gulp Tasks”打开Gulp窗口，若出现”No task found”，选择右键”Reload tasks”，双击运行即可。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">11.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装nodejs；"><span class="nav-number">11.1.</span> <span class="nav-text">安装nodejs；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建package-json文件；"><span class="nav-number">11.2.</span> <span class="nav-text">新建package.json文件；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局和本地安装gulp；"><span class="nav-number">11.3.</span> <span class="nav-text">全局和本地安装gulp；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装gulp插件；"><span class="nav-number">11.4.</span> <span class="nav-text">安装gulp插件；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建gulpfile-js文件；"><span class="nav-number">11.5.</span> <span class="nav-text">新建gulpfile.js文件；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过命令提示符运行gulp任务。"><span class="nav-number">11.6.</span> <span class="nav-text">通过命令提示符运行gulp任务。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结束语"><span class="nav-number">11.7.</span> <span class="nav-text">结束语</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文有任何错误，或有任何疑问，欢迎留言说明。"><span class="nav-number">12.</span> <span class="nav-text">本文有任何错误，或有任何疑问，欢迎留言说明。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference-links"><span class="nav-number">13.</span> <span class="nav-text">Reference links</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2009 &mdash; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">opensmarty</span>
+  &nbsp;&nbsp;
+  <a href="https://tongji.baidu.com/web/welcome/ico?s=f484f384e1bc0a57e69f1c25b86fe1d5" target="_blank">百度统计</a>
+
+  
+
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <span>Hosted by <a href="https://github.com" style="font-weight: bold">GitHub</a></span>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

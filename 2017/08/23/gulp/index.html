@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next mist" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="gulp,自动化,构建工具,Install," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="科技，让生活更美好" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="gulp实践gulp 简介地址： http://gulpjs.com/  它是一款nodejs应用。 它是打造前端工作流的利器，打包、压缩、合并、git、远程操作…， 简单易用 无快不破 高质量的插件 ….  gulp 安装及常见问题1. 安装gulp1npm install -g gulp 如果报Error: EACCES, open ‘/Users/xxx/xxx.lock错误。先执行：sud">
+<meta name="keywords" content="gulp,自动化,构建工具,Install">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gulp">
+<meta property="og:url" content="https://opensmarty.github.io/2017/08/23/gulp/index.html">
+<meta property="og:site_name" content="科技，让生活更美好">
+<meta property="og:description" content="gulp实践gulp 简介地址： http://gulpjs.com/  它是一款nodejs应用。 它是打造前端工作流的利器，打包、压缩、合并、git、远程操作…， 简单易用 无快不破 高质量的插件 ….  gulp 安装及常见问题1. 安装gulp1npm install -g gulp 如果报Error: EACCES, open ‘/Users/xxx/xxx.lock错误。先执行：sud">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-24T10:23:43.651Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="gulp">
+<meta name="twitter:description" content="gulp实践gulp 简介地址： http://gulpjs.com/  它是一款nodejs应用。 它是打造前端工作流的利器，打包、压缩、合并、git、远程操作…， 简单易用 无快不破 高质量的插件 ….  gulp 安装及常见问题1. 安装gulp1npm install -g gulp 如果报Error: EACCES, open ‘/Users/xxx/xxx.lock错误。先执行：sud">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: false,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://opensmarty.github.io/2017/08/23/gulp/"/>
+
+
+
+
+
+  <title>gulp | 科技，让生活更美好</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f484f384e1bc0a57e69f1c25b86fe1d5";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">科技，让生活更美好</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">创新，努力，坚持</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://opensmarty.github.io/2017/08/23/gulp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="opensmarty">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/me.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="科技，让生活更美好">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">gulp</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-23T15:54:21+08:00">
+                2017-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/工作流/" itemprop="url" rel="index">
+                    <span itemprop="name">工作流</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 浏览
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="gulp实践"><a href="#gulp实践" class="headerlink" title="gulp实践"></a>gulp实践</h1><h2 id="gulp-简介"><a href="#gulp-简介" class="headerlink" title="gulp 简介"></a>gulp 简介</h2><p>地址： <a href="http://gulpjs.com/" target="_blank" rel="external">http://gulpjs.com/</a></p>
+<ul>
+<li>它是一款nodejs应用。</li>
+<li>它是打造前端工作流的利器，打包、压缩、合并、git、远程操作…，</li>
+<li>简单易用</li>
+<li>无快不破</li>
+<li>高质量的插件</li>
+<li>….</li>
+</ul>
+<h2 id="gulp-安装及常见问题"><a href="#gulp-安装及常见问题" class="headerlink" title="gulp 安装及常见问题"></a>gulp 安装及常见问题</h2><h3 id="1-安装gulp"><a href="#1-安装gulp" class="headerlink" title="1. 安装gulp"></a>1. 安装gulp</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g gulp</div></pre></td></tr></table></figure>
+<p>如果报Error: EACCES, open ‘/Users/xxx/xxx.lock错误。先执行：sudo chown -R $(whoami) $HOME/.npm;</p>
+<p>如果使用npm安装插件太慢（被墙），可执行 npm install -g cnpm –registry=<a href="https://registry.npm.taobao.org" target="_blank" rel="external">https://registry.npm.taobao.org</a>,先安装cnpm, 之后再安装插件时用cnpm安装cnpm install gulp</p>
+<h3 id="2-安装各种插件"><a href="#2-安装各种插件" class="headerlink" title="2. 安装各种插件"></a>2. 安装各种插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">npm install --save gulp            //本地使用gulp</div><div class="line">npm install --save gulp-imagemin   //压缩图片</div><div class="line">npm install --save gulp-minify-css //压缩css</div><div class="line">npm install --save gulp-ruby-sass  //sass</div><div class="line">npm install --save gulp-less       //less　</div><div class="line">npm install --save gulp-jshint     //js代码检测</div><div class="line">npm install --save gulp-uglify     //js压缩</div><div class="line">npm install --save gulp-concat     //文件合并</div><div class="line">npm install --save gulp-rename     //文件重命名</div><div class="line">npm install --save png-sprite      //png合并</div><div class="line">npm install --save gulp-htmlmin    //压缩html</div><div class="line">npm install --save gulp-clean      //清空文件夹</div><div class="line">npm install --save browser-sync    //文件修改浏览器自动刷新</div><div class="line">npm install --save gulp-shell      //执行shell命令</div><div class="line">npm install --save gulp-ssh        //操作远程机器</div><div class="line">npm install --save run-sequence    //task顺序执行</div></pre></td></tr></table></figure>
+<pre><code>附加插件：yargs获取的参数判断是开发打包还是生产打包，lodash用于操作数组，path用于写路径.
+</code></pre><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">npm install --save yargs　</div><div class="line">npm install --save lodash</div><div class="line">npm install --save path</div></pre></td></tr></table></figure>
+<p>或者根据package.json 自动安装。把package.json拷贝到自己的工程目录下，进入目录，执行:npm install</p>
+<h2 id="gulp-使用案例"><a href="#gulp-使用案例" class="headerlink" title="gulp 使用案例"></a>gulp 使用案例</h2><p>所有代码在：<a href="https://github.com/opensmarty" target="_blank" rel="external">https://github.com/opensmarty</a></p>
+<h3 id="范例1"><a href="#范例1" class="headerlink" title="范例1:"></a>范例1:</h3><p>demo1目录结构如下。把demo1中的 index.html压缩，把src里面的less编译、合并、压缩、重命名、存储到dist。src里面的图片压缩、合并存储到dist。src里面的js做代码检查，压缩，合并，存储到dist。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">+ demo1</div><div class="line">    + dist</div><div class="line">        + css</div><div class="line">            - merge.min.css</div><div class="line">        + js</div><div class="line">            - merge.min.js</div><div class="line">        + imgs</div><div class="line">            - 1.png</div><div class="line">            - 2.png</div><div class="line">        - index.html</div><div class="line">    + src</div><div class="line">        + css</div><div class="line">            - a.css</div><div class="line">            - b.css</div><div class="line">        + js</div><div class="line">            - a.js</div><div class="line">            - b.js</div><div class="line">        + imgs</div><div class="line">            - 1.png</div><div class="line">            - 2.png</div><div class="line">        - index.html</div></pre></td></tr></table></figure>
+<p>gulpfile.js</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"><span class="comment">// 引入组件</span></div><div class="line"><span class="keyword">var</span> minifycss = <span class="built_in">require</span>(<span class="string">'gulp-minify-css'</span>), <span class="comment">// CSS压缩</span></div><div class="line">    uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>), <span class="comment">// js压缩</span></div><div class="line">    concat = <span class="built_in">require</span>(<span class="string">'gulp-concat'</span>), <span class="comment">// 合并文件</span></div><div class="line">    rename = <span class="built_in">require</span>(<span class="string">'gulp-rename'</span>), <span class="comment">// 重命名</span></div><div class="line">    clean = <span class="built_in">require</span>(<span class="string">'gulp-clean'</span>), <span class="comment">//清空文件夹</span></div><div class="line">    minhtml = <span class="built_in">require</span>(<span class="string">'gulp-htmlmin'</span>), <span class="comment">//html压缩</span></div><div class="line">    jshint = <span class="built_in">require</span>(<span class="string">'gulp-jshint'</span>), <span class="comment">//js代码规范性检查</span></div><div class="line">    imagemin = <span class="built_in">require</span>(<span class="string">'gulp-imagemin'</span>); <span class="comment">//图片压缩</span></div><div class="line"></div><div class="line"></div><div class="line">gulp.task(<span class="string">'html'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> gulp.src(<span class="string">'src/*.html'</span>)</div><div class="line">    .pipe(minhtml(&#123;<span class="attr">collapseWhitespace</span>: <span class="literal">true</span>&#125;))</div><div class="line">    .pipe(gulp.dest(<span class="string">'dist'</span>));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'css'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">argument</span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/css/*.css'</span>)</div><div class="line">        .pipe(concat(<span class="string">'merge.css'</span>))</div><div class="line">        .pipe(rename(&#123;</div><div class="line">            suffix: <span class="string">'.min'</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(minifycss())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/css/'</span>));</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'js'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">argument</span>) </span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/js/*.js'</span>)</div><div class="line">        .pipe(jshint())</div><div class="line">        .pipe(jshint.reporter(<span class="string">'default'</span>))</div><div class="line">        .pipe(concat(<span class="string">'merge.js'</span>))</div><div class="line">        .pipe(rename(&#123;</div><div class="line">            suffix: <span class="string">'.min'</span></div><div class="line">        &#125;))</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/js/'</span>));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'img'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">argument</span>)</span>&#123;</div><div class="line">    gulp.src(<span class="string">'src/imgs/*'</span>)</div><div class="line">        .pipe(imagemin())</div><div class="line">        .pipe(gulp.dest(<span class="string">'dist/imgs'</span>));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'clear'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    gulp.src(<span class="string">'dist/*'</span>,&#123;<span class="attr">read</span>: <span class="literal">false</span>&#125;)</div><div class="line">        .pipe(clean());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gulp.task(<span class="string">'build'</span>, [<span class="string">'html'</span>, <span class="string">'css'</span>, <span class="string">'js'</span>, <span class="string">'img'</span>]);</div></pre></td></tr></table></figure>
+<p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">gulp build;</div></pre></td></tr></table></figure>
+<p>可实现src目录下的html压缩，css、js合并压缩，图片压缩，最后放入 dist目录下</p>
+<h3 id="范例2"><a href="#范例2" class="headerlink" title="范例2:"></a>范例2:</h3><p>监控项目文件变动，自动刷新浏览器，本地调试， 并且把本地代码同步到远程服务器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 引入组件</span></div><div class="line"><span class="keyword">var</span> browserSync = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>).create();   <span class="comment">//用于浏览器自动刷新</span></div><div class="line"><span class="keyword">var</span> scp = <span class="built_in">require</span>(<span class="string">'gulp-scp2'</span>);                       <span class="comment">//用于scp到远程机器</span></div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"></div><div class="line">gulp.task(<span class="string">'reload'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    browserSync.reload();</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'server'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    browserSync.init(&#123;</div><div class="line">        server: &#123;</div><div class="line">            baseDir: <span class="string">"./src"</span></div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    gulp.watch([<span class="string">'**/*.css'</span>, <span class="string">'**/*.js'</span>, <span class="string">'**/*.html'</span>], [<span class="string">'reload'</span>, <span class="string">'scp'</span>]);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">gulp.task(<span class="string">'scp'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'src/**/*'</span>)</div><div class="line">        .pipe(scp(&#123;</div><div class="line">            host: <span class="string">'121.40.201.213'</span>,</div><div class="line">            username: <span class="string">'root'</span>,</div><div class="line">            privateKey: fs.readFileSync(<span class="string">'/Users/wingo/.ssh/id_rsa'</span>),</div><div class="line">            dest: <span class="string">'/var/www/fe.jirengu.com'</span>,</div><div class="line">            watch: <span class="function"><span class="keyword">function</span>(<span class="params">client</span>) </span>&#123;</div><div class="line">                client.on(<span class="string">'write'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">o</span>) </span>&#123;</div><div class="line">                    <span class="built_in">console</span>.log(<span class="string">'write %s'</span>, o.destination);</div><div class="line">                &#125;);</div><div class="line">            &#125;</div><div class="line">        &#125;))</div><div class="line">        .on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(err);</div><div class="line">        &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">gulp scp;  // 可把本地开发环境代码拷贝到服务器</div><div class="line">gulp server; //可在本地创建服务器，本地开发浏览器立刻刷新</div></pre></td></tr></table></figure>
+<h3 id="范例3"><a href="#范例3" class="headerlink" title="范例3:"></a>范例3:</h3><p>监控项目文件变动，自动压缩、合并、打包、添加版本号</p>
+<p>html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- build:css css/merge.css --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/a.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"css/b.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- endbuild --&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>demo1-工程化手动版<span class="tag">&lt;/<span class="name">p</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- build:js js/merge.js --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/a.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"js/b.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- endbuild --&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>gulpfile.js<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"><span class="keyword">var</span> rev = <span class="built_in">require</span>(<span class="string">'gulp-rev'</span>);   <span class="comment">//添加版本号</span></div><div class="line"><span class="keyword">var</span> revReplace = <span class="built_in">require</span>(<span class="string">'gulp-rev-replace'</span>);  <span class="comment">//版本号替换</span></div><div class="line"><span class="keyword">var</span> useref = <span class="built_in">require</span>(<span class="string">'gulp-useref'</span>);   <span class="comment">//解析html资源定位</span></div><div class="line"><span class="keyword">var</span> filter = <span class="built_in">require</span>(<span class="string">'gulp-filter'</span>);   <span class="comment">//过滤数据</span></div><div class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</div><div class="line"><span class="keyword">var</span> csso = <span class="built_in">require</span>(<span class="string">'gulp-csso'</span>);      <span class="comment">//css优化压缩</span></div><div class="line"><span class="keyword">var</span> clean = <span class="built_in">require</span>(<span class="string">'gulp-clean'</span>);</div><div class="line"></div><div class="line">gulp.task(<span class="string">"index"</span>, [<span class="string">'clear'</span>], <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> jsFilter = filter(<span class="string">"**/*.js"</span>, &#123;<span class="attr">restore</span>: <span class="literal">true</span>&#125;);</div><div class="line">  <span class="keyword">var</span> cssFilter = filter(<span class="string">"**/*.css"</span>, &#123;<span class="attr">restore</span>: <span class="literal">true</span>&#125;);</div><div class="line"></div><div class="line">  <span class="keyword">var</span> userefAssets = useref.assets();</div><div class="line"></div><div class="line"></div><div class="line">  <span class="keyword">return</span> gulp.src(<span class="string">"src/index.html"</span>)</div><div class="line">    .pipe(userefAssets)      <span class="comment">// Concatenate with gulp-useref</span></div><div class="line">    .pipe(jsFilter)</div><div class="line">    .pipe(uglify())             <span class="comment">// Minify any javascript sources</span></div><div class="line">    .pipe(jsFilter.restore)</div><div class="line">    .pipe(cssFilter)</div><div class="line">    .pipe(csso())               <span class="comment">// Minify any CSS sources</span></div><div class="line">    .pipe(cssFilter.restore)</div><div class="line">    .pipe(rev())                <span class="comment">// Rename the concatenated files</span></div><div class="line">    .pipe(userefAssets.restore())</div><div class="line">    .pipe(useref())</div><div class="line">    .pipe(revReplace())         <span class="comment">// Substitute in new filenames</span></div><div class="line">    .pipe(gulp.dest(<span class="string">'dist'</span>));</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'clear'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    gulp.src(<span class="string">'dist/*'</span>,&#123;<span class="attr">read</span>: <span class="literal">false</span>&#125;)</div><div class="line">        .pipe(clean());</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="范例4"><a href="#范例4" class="headerlink" title="范例4:"></a>范例4:</h3><p>本地shell命令， 远程shell， 任务顺序执行…</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">var</span> shell = <span class="built_in">require</span>(<span class="string">'gulp-shell'</span>);</div><div class="line"><span class="keyword">var</span> runSequence = <span class="built_in">require</span>(<span class="string">'run-sequence'</span>);</div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"><span class="keyword">var</span> GulpSSH = <span class="built_in">require</span>(<span class="string">'gulp-ssh'</span>);</div><div class="line"></div><div class="line"><span class="comment">//shell操作,</span></div><div class="line">gulp.task(<span class="string">'git'</span>, shell.task([<span class="string">'git add .'</span>, <span class="string">'git commit -am "dd"'</span>, <span class="string">'git push -u origin dev'</span>]));</div><div class="line">gulp.task(<span class="string">'clear'</span>, shell.task([<span class="string">'find . -name ".DS_Store" -depth -exec rm &#123;&#125; \\;'</span>]));</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">//操作远程主机</span></div><div class="line"><span class="keyword">var</span> gulpSSH = <span class="keyword">new</span> GulpSSH(&#123;</div><div class="line">    ignoreErrors: <span class="literal">false</span>,</div><div class="line">    sshConfig: &#123;</div><div class="line">        host: <span class="string">'121.40.201.213'</span>,</div><div class="line">        port: <span class="number">22</span>,</div><div class="line">        username: <span class="string">'root'</span>,</div><div class="line">        privateKey: fs.readFileSync(<span class="string">'/Users/wingo/.ssh/id_rsa'</span>)</div><div class="line">    &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">gulp.task(<span class="string">'remote'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> gulpSSH</div><div class="line">        .shell([<span class="string">'cd /var/www/fe.jirengu.com'</span>, <span class="string">'git pull origin dev'</span>, <span class="string">'rm -rf _runtime'</span>]);</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">gulp.task(<span class="string">'build'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">callback</span>) </span>&#123;</div><div class="line">    runSequence(</div><div class="line">        <span class="string">'git'</span>,</div><div class="line">        <span class="string">'clear'</span>,</div><div class="line">        <span class="string">'remote'</span>,</div><div class="line">        callback</div><div class="line">    );</div><div class="line">&#125;);</div><div class="line"></div><div class="line"></div><div class="line">gulp.task(<span class="string">'watch'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.watch([<span class="string">'**/*.css'</span>, <span class="string">'**/*.js'</span>, <span class="string">'**/*.html'</span>, <span class="string">'**/*.php'</span>], [<span class="string">'build'</span>]);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h1 id="本文有任何错误，或有任何疑问，欢迎留言说明。"><a href="#本文有任何错误，或有任何疑问，欢迎留言说明。" class="headerlink" title="本文有任何错误，或有任何疑问，欢迎留言说明。"></a>本文有任何错误，或有任何疑问，欢迎留言说明。</h1><p><em>邮箱:</em> opensmarty@163.com<br><em>QQ:</em> 1327400982</p>
+<h1 id="Reference-links"><a href="#Reference-links" class="headerlink" title="Reference links"></a>Reference links</h1><p><a href="https://github.com/opensmarty/blog/soure/_post/gulp入门教程.md" target="_blank" rel="external">gulp入门教程</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    <div style="text-align:center;color: #ccc;font-size:14px;">---------------- The End ----------------</div>
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    opensmarty
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://opensmarty.github.io/2017/08/23/gulp/" title="gulp">https://opensmarty.github.io/2017/08/23/gulp/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/gulp/" rel="tag"># gulp</a>
+          
+            <a href="/tags/自动化/" rel="tag"># 自动化</a>
+          
+            <a href="/tags/构建工具/" rel="tag"># 构建工具</a>
+          
+            <a href="/tags/Install/" rel="tag"># Install</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/21/项目错误代码设计/" rel="next" title="项目错误代码设计">
+                <i class="fa fa-chevron-left"></i> 项目错误代码设计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/24/glup入门教程/" rel="prev" title="glup入门教程">
+                glup入门教程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微薄</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/me.jpg"
+               alt="opensmarty" />
+          <p class="site-author-name" itemprop="name">opensmarty</p>
+           
+              <p class="site-description motion-element" itemprop="description">既有视野又有思维的米波g</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/opensmarty" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/opensmarty" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/opensmarty" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-thumbs-up"></i>
+                  
+                    
+                      Zhihu
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://segmentfault.com/u/opensmarty" target="_blank" title="Segmentfault">
+                  
+                    <i class="fa fa-fw fa-stack-overflow"></i>
+                  
+                    
+                      Segmentfault
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://github.com" title="Github" target="_blank">Github</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://laravel.com/" title="Laravel" target="_blank">Laravel</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://540079673.blog.163.com" title="HappyClass" target="_blank">HappyClass</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#gulp实践"><span class="nav-number">1.</span> <span class="nav-text">gulp实践</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#gulp-简介"><span class="nav-number">1.1.</span> <span class="nav-text">gulp 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gulp-安装及常见问题"><span class="nav-number">1.2.</span> <span class="nav-text">gulp 安装及常见问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-安装gulp"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 安装gulp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-安装各种插件"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 安装各种插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gulp-使用案例"><span class="nav-number">1.3.</span> <span class="nav-text">gulp 使用案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#范例1"><span class="nav-number">1.3.1.</span> <span class="nav-text">范例1:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范例2"><span class="nav-number">1.3.2.</span> <span class="nav-text">范例2:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范例3"><span class="nav-number">1.3.3.</span> <span class="nav-text">范例3:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#范例4"><span class="nav-number">1.3.4.</span> <span class="nav-text">范例4:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本文有任何错误，或有任何疑问，欢迎留言说明。"><span class="nav-number">2.</span> <span class="nav-text">本文有任何错误，或有任何疑问，欢迎留言说明。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference-links"><span class="nav-number">3.</span> <span class="nav-text">Reference links</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2009 &mdash; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">opensmarty</span>
+  &nbsp;&nbsp;
+  <a href="https://tongji.baidu.com/web/welcome/ico?s=f484f384e1bc0a57e69f1c25b86fe1d5" target="_blank">百度统计</a>
+
+  
+
+</div>
+
+
+  <div class="powered-by">
+    由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+    &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+    <span>Hosted by <a href="https://github.com" style="font-weight: bold">GitHub</a></span>
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i> 访问人数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i> 总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
